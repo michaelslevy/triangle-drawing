@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
-
+import SelectorBlock from "./SelectorBlock"
+import './index.css'
 
 //function passed to Reduxes Connect to populate store
 const mapStateToProps = (store) => {
@@ -22,22 +23,53 @@ class ColorSelector extends Component {
     constructor(){
       super();
       this.state = {
-        palettes:{}
+        palettes:[],
+        loading:true
       };
+
+      this.inputRef = React.createRef();
+      this.updateKeyword = this.updateKeyword.bind(this);
+
     }
 
-    getData(){
+    parseColorJson=function(json){
+      let data=[];
+      for (let i=0; i<json.length; i++){
 
+        let colors=json[i].colors;
+        let colorList=[];
+        for(let x=0; x<colors.length; x++){
+          colorList.push(colors[x]);
+        }
+
+        let obj={title:json[i].title, colors:colorList}
+        data.push(obj);
+      }
+      return data;
+    }
+
+    getData(keywords=false){
+      const self=this;
       const url='http://webventions.com/sandbox/fetch/fetch.php';
-      fetch(url).then(function(response) {
-      console.log(response);
+      let fullLink=(keywords)?url+"?keywords="+encodeURI(keywords):url;
+      self.setState({loading:true});
+      fetch(fullLink).then(function(response) {
         return response.json();
       }).then(function(json) {
-        console.log(json);
-        this.setState({palettes:json})
+        let p=self.parseColorJson(json);
+        self.setState({palettes:p})
+        self.setState({loading:false});
       }).catch(function(err) {
-        console.log('Fetch problem: ' + err.message);
+        console.error('Fetch problem: ' + err.message);
       });
+  }
+
+  updateKeyword=function(event){
+    event.preventDefault();
+    event.stopPropagation();
+
+    let keywords=this.inputRef.current.value;
+    this.getData(keywords);
   }
 
   componentDidMount(){
@@ -54,10 +86,18 @@ class ColorSelector extends Component {
             <button>Builder</button>
           </nav>
 
+          <form>
+            <input placeholder='enter keywords' type='text'ref={this.inputRef} id='colorSearch' />
+            <button id='colorSubmit' onClick={this.updateKeyword} >Explore</button>
+          </form>
+
           <div id='colorList'>
-            <ul>
-            {/*this.state.palettes.map((palette) =>(<li>{palette.title}</li>))*/ }
-            </ul>
+
+            {(this.state.loading)?<p>loading...</p>:
+            this.state.palettes.map((palette, index) =>(
+              <SelectorBlock key={index} title={palette.title}  colors={palette.colors} />
+            ))}
+
           </div>
        </div>
      );
