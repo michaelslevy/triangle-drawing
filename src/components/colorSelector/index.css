@@ -5,3 +5,70 @@
   margin-right:5px;
   border:solid 1px #bbb;
 }
+
+#colorSelector {
+  padding:40px;
+}
+
+#colorSearch {
+  margin-top:20px;
+}
+
+ #colorList {
+   margin-top:40px;
+ }
+
+ .selectorBlock {
+   margin-bottom:10px;
+   display:inline-block;
+   margin-right:30px;
+ }
+
+.colorBlocks {
+  min-width:285px;
+  border:solid 4px transparent;
+  height:52px;
+  margin-bottom:5px;
+  padding:5px 0 5px 5px;
+}
+
+.colorBlocks:hover, .colorBlocks.active {
+  border:solid 4px #75b8fd;
+}
+
+.selectorBlock h4 {
+  padding-left:9px;
+}
+
+ #colorSearch {
+   margin-top:20px;
+ }
+
+#colorSubmit {
+  background:#555;
+  color:white;
+  border:0;
+  height:40px;
+  width:100px;
+  line-height:40px;
+  font-size:1em;
+  font-family: 'Karla', "futura",sans-serif;
+  display:inline-block;
+  margin:0;
+  vertical-align: bottom;
+  font-size:1.25em;
+}
+
+#colorSearchInput {
+  width:calc(100% - 125px);
+  max-width:480px;
+  font-size:1.25em;
+  height:40px;
+  line-height:40px;
+  padding:0 10px;
+  border:0;
+  display:inline-block;
+  margin:0;
+  vertical-align: bottom;
+  font-family:'Karla', "futura",sans-serif;
+}

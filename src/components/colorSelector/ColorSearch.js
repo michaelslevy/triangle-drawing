@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import SelectorBlock from "./SelectorBlock"
+import {changePalette} from "../../actions/settings.js"
 
 //function passed to Reduxes Connect to populate store
 const mapStateToProps = (store) => {
@@ -13,7 +14,7 @@ const mapStateToProps = (store) => {
 //function passed to Reduxes Connect to dispatch to props
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    changePalette: (colors) => dispatch(changePalette(colors))
   }
 }
 
@@ -28,7 +29,7 @@ class ColorSearch extends Component {
 
       this.inputRef = React.createRef();
       this.updateKeyword = this.updateKeyword.bind(this);
-
+      this.clickHandler=this.clickHandler.bind(this);
     }
 
     parseColorJson=function(json){
@@ -75,12 +76,25 @@ class ColorSearch extends Component {
     this.getData();
   }
 
+  clickHandler(colors, e){
+    e.preventDefault();
+    e.stopPropagation();
+
+    this.props.changePalette(colors);
+
+    let colorBlocksList=document.querySelectorAll(".colorBlocks");
+    for(let i=0; i<colorBlocksList.length; i++){
+      colorBlocksList[i].classList.remove("active");
+    }
+    e.target.parentNode.classList.add("active");
+  }
+
    render() {
 
      return (
        <div id='colorSearch'>
           <form>
-            <input placeholder='enter keywords' type='text'ref={this.inputRef} id='colorSearch' />
+            <input placeholder='enter keywords' type='text'ref={this.inputRef} id='colorSearchInput' />
             <button id='colorSubmit' onClick={this.updateKeyword} >Explore</button>
           </form>
 
@@ -88,7 +102,7 @@ class ColorSearch extends Component {
 
             {(this.state.loading)?<p>loading...</p>:
             this.state.palettes.map((palette, index) =>(
-              <SelectorBlock key={index} title={palette.title}  colors={palette.colors} />
+              <SelectorBlock key={index} title={palette.title} handler={this.clickHandler} colors={palette.colors} />
             ))}
 
           </div>

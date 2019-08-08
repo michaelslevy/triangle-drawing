@@ -26,9 +26,9 @@ class ColorSelector extends Component {
      return (
        <div id='colorSelector'>
           <h1>Palette Selector</h1>
-          <nav>
-            <button>Popular</button>
-            <button>Builder</button>
+          <nav className="tabs">
+            <button id='popularPalettes' className='active'>Popular</button>
+            <button id='customPalette'>Builder</button>
           </nav>
 
           <ColorSearch />
