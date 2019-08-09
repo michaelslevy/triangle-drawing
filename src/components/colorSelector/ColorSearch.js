@@ -101,7 +101,7 @@ class ColorSearch extends Component {
           <div id='colorList'>
 
             {(this.state.loading)?<p>loading...</p>:
-            this.state.palettes.map((palette, index) =>(
+            this.state.palettes.filter(palette=>palette.colors.length>0).map((palette, index) =>(
               <SelectorBlock key={index} title={palette.title} handler={this.clickHandler} colors={palette.colors} />
             ))}
 
