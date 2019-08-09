@@ -26,13 +26,22 @@ class ColorSelector extends Component {
     this.state={
         mode:"search"
     }
+
+    this.navHandler=this.navHandler.bind(this);
   }
 
-  navHandler(e, mode){
+  navHandler(mode,e){
     e.preventDefault();
     e.stopPropagation();
 
     this.setState({mode});
+    let buttons=document.querySelectorAll("#colorSelector .tabs button");
+      for(let i=0; i<buttons.length; i++){
+         buttons[i].classList.remove("active");
+    }
+
+    console.log(e.target.classList);
+    e.target.classList.add("active");
   }
 
    render() {
@@ -41,8 +50,8 @@ class ColorSelector extends Component {
        <div id='colorSelector'>
           <h1>Palette Selector</h1>
           <nav className="tabs">
-            <button id='popularPalettes' onClick={(e)=>{this.navHandler(e,"search")}} className='active'>Popular</button>
-            <button id='customPalette' onClick={(e)=>{this.navHandler(e,"builder")}}>Builder</button>
+            <button id='popularPalettes' onClick={(e)=>this.navHandler("search",e)} className='active'>Popular</button>
+            <button id='customPalette' onClick={(e)=>this.navHandler("builder",e)}>Builder</button>
           </nav>
           {(this.state.mode==="search")?(<ColorSearch />):(<PaletteBuilder />)}
        </div>
