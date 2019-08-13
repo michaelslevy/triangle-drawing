@@ -1,6 +1,6 @@
 const initialState = {
   loading: true,
-  palette: ["#ffffff","#ffffff","#ffffff","#ffffff","#ffffff"],
+  palette: ["ffffff","ffffff","ffffff","ffffff","ffffff"],
   template: "diamond"
 }
 

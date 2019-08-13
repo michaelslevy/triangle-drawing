@@ -40,7 +40,6 @@ class ColorSelector extends Component {
          buttons[i].classList.remove("active");
     }
 
-    console.log(e.target.classList);
     e.target.classList.add("active");
   }
 
@@ -60,7 +59,7 @@ class ColorSelector extends Component {
 }
 
 ColorSelector.propTypes = {
-
+  mode:PropTypes.string
 };
 
 //connects Login component to store

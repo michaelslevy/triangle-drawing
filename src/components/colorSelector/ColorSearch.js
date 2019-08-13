@@ -112,7 +112,8 @@ class ColorSearch extends Component {
 }
 
 ColorSearch.propTypes = {
-
+  palettes:PropTypes.array,
+  loading:PropTypes.bool
 };
 
 //connects Login component to store

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
-import SelectorBlock from "./SelectorBlock"
 import {changePalette} from "../../actions/settings"
 
 import  ColorPicker  from './ColorPicker';
@@ -26,20 +24,20 @@ class PaletteBuilder extends Component {
 
      return (
        <div id='paletteBuilder'>
-          <h1>Palette Builder</h1>
+          <p>Click on color swatches to design the colors in your pattern</p>
           <div id='colorList'>
 
-             <ColorPicker  />
+             <ColorPicker initialColor={(this.props.palette[0])?"#"+this.props.palette[0]:"#ffffff"} />
+             <ColorPicker initialColor={(this.props.palette[1])?"#"+this.props.palette[1]:"#ffffff"} />
+             <ColorPicker initialColor={(this.props.palette[2])?"#"+this.props.palette[2]:"#ffffff"} />
+             <ColorPicker initialColor={(this.props.palette[3])?"#"+this.props.palette[3]:"#ffffff"} />
+             <ColorPicker initialColor={(this.props.palette[4])?"#"+this.props.palette[4]:"#ffffff"} />
 
           </div>
         </div>
      );
   }
 }
-
-PaletteBuilder.propTypes = {
-
-};
 
 //connects Login component to store
 export default connect(mapStateToProps, mapDispatchToProps)(PaletteBuilder)  ;
