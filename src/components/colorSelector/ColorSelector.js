@@ -9,7 +9,7 @@ import Steps from "../steps/Steps"
 //function passed to Reduxes Connect to populate store
 const mapStateToProps = (store) => {
   return {
-
+    palette:store.settings.palette
   }
 }
 
@@ -45,16 +45,21 @@ class ColorSelector extends Component {
   }
 
    render() {
-
+console.log(this.props.palette.join(''));
        return (
        <div id='colorSelector'>
          <header id='titleHeader'>
             <h1>Palette Selector</h1>
-            <nav id='steps'>
-              <Steps name='Choose your palette' num={1} active={1} completed={0} />
-              <Steps name='Choose your phrase' num={2} active={0} completed={0} />
-              <Steps name='Design your pattern'num={3}  active={0} completed={0} />
-            </nav>
+           <div id='pageIndicators'>
+              <nav id='steps'>
+                <Steps name='Choose your palette' active={1} completed={0} />
+                <Steps name='Choose your phrase' active={1} completed={0} />
+                <Steps name='Design your pattern' active={1} completed={0} />
+              </nav>
+              <button id='nextPage' className={
+                (this.props.palette.join("")!=="ffffffffffffffffffffffffffffff")? "ready": ""
+              } >Next ▸</button>
+          </div>
         </header>
 
           <nav className="tabs">

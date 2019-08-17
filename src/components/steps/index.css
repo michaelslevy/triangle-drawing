@@ -4,7 +4,7 @@
   color:#555;
   font-family:Karla, futura, arial;
   padding:0;
-  margin-right:10px;
+  margin-left:10px;
   display:flex;
   align-self: flex-start;
 }
@@ -32,6 +32,23 @@
   align-items:flex-flex-start;
   align-items:center;
   margin-top:10px;
+}
+
+#nextPage {
+  border:0;
+  margin:0;
+  padding:5px 25px 5px 30px;
+  float:right;
+  margin-top:10px;
+  font-size:1em;
+  background: #ddd;
+  color:white;
+  font-family: Literata, georgia, serif;
+}
+
+#nextPage.ready {
+  background: #28B5D1;
+  color:white;
 }
 
 @media (max-width:1000px){
