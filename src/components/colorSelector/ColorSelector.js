@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import './index.css'
 import ColorSearch from "./ColorSearch"
 import PaletteBuilder from "./PaletteBuilder"
+import Steps from "../steps/Steps"
 
 //function passed to Reduxes Connect to populate store
 const mapStateToProps = (store) => {
@@ -45,13 +46,22 @@ class ColorSelector extends Component {
 
    render() {
 
-     return (
+       return (
        <div id='colorSelector'>
-          <h1>Palette Selector</h1>
+         <header id='titleHeader'>
+            <h1>Palette Selector</h1>
+            <nav id='steps'>
+              <Steps name='Choose your palette' num={1} active={1} completed={0} />
+              <Steps name='Choose your phrase' num={2} active={0} completed={0} />
+              <Steps name='Design your pattern'num={3}  active={0} completed={0} />
+            </nav>
+        </header>
+
           <nav className="tabs">
             <button id='popularPalettes' onClick={(e)=>this.navHandler("search",e)} className='active'>Popular</button>
             <button id='customPalette' onClick={(e)=>this.navHandler("builder",e)}>Builder</button>
           </nav>
+
           {(this.state.mode==="search")?(<ColorSearch />):(<PaletteBuilder />)}
        </div>
      );
@@ -63,4 +73,4 @@ ColorSelector.propTypes = {
 };
 
 //connects Login component to store
-export default connect(mapStateToProps, mapDispatchToProps)(ColorSelector)  ;
+export default connect(mapStateToProps, mapDispatchToProps)(ColorSelector);

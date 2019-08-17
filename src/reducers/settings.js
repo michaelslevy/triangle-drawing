@@ -1,7 +1,8 @@
 const initialState = {
   loading: true,
   palette: ["ffffff","ffffff","ffffff","ffffff","ffffff"],
-  template: "diamond"
+  template: "diamond",
+  page:"ColorSelector"
 }
 
 const settings = (state = initialState, action) => {
@@ -21,6 +22,12 @@ const settings = (state = initialState, action) => {
         loading: false,
         template: action.template,
         error:false
+      }
+
+    case "page_change":
+      return {
+        ...state,
+        page: action.page
       }
 
     default:

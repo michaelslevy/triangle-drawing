@@ -1,3 +1,8 @@
+#titleHeader {
+  display:flex;
+  justify-content: space-between;
+}
+
 .colorBlock{
   display: inline-block;
   width:50px;
@@ -8,6 +13,7 @@
 
 #colorSelector {
   padding:40px;
+  position:relative;
 }
 
 #colorSearch {
@@ -71,4 +77,8 @@
   margin:0;
   vertical-align: bottom;
   font-family:'Karla', "futura",sans-serif;
+}
+
+.photoshop-picker {
+  font-family: 'Karla', "futura",sans-serif;
 }

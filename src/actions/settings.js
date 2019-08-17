@@ -7,3 +7,8 @@ export const changeTemplate=template=>({
   type:"template_change",
   template
 })
+
+export const changePage=page=>({
+  type:"page_change",
+  page
+})

@@ -1,0 +1,41 @@
+.step {
+  border:solid 1px #555;
+  border-radius:5px;
+  color:#555;
+  font-family:Karla, futura, arial;
+  padding:0;
+  margin-right:10px;
+  display:flex;
+  align-self: flex-start;
+}
+
+.step.active {
+  color:white;
+  background:#555;
+}
+
+.step .num {
+  border-right:solid 1px #555;
+  padding:5px 10px;
+}
+
+.step.active .num{
+  border-right-color: white;
+}
+
+.step .text {
+  padding:5px 10px;
+}
+
+#steps {
+  display:flex;
+  align-items:flex-flex-start;
+  align-items:center;
+  margin-top:10px;
+}
+
+@media (max-width:1000px){
+  #titleHeader {
+    display: block;
+  }
+}
