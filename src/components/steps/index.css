@@ -9,6 +9,10 @@
   align-self: flex-start;
 }
 
+.step:first-child{
+  margin:0;
+}
+
 .step.active {
   color:white;
   background:#555;
@@ -54,5 +58,10 @@
 @media (max-width:1000px){
   #titleHeader {
     display: block;
+  }
+
+  #nextPage {
+    float:none;
+    display:block;
   }
 }

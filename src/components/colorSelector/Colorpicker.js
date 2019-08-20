@@ -1,6 +1,22 @@
 /* https://casesandberg.github.io/react-color */
 import React from 'react'
 import { PhotoshopPicker  } from 'react-color'
+import { connect } from 'react-redux'
+import {changePalette} from "../../actions/settings"
+
+//function passed to Reduxes Connect to populate store
+const mapStateToProps = (store) => {
+  return {
+    palette:store.settings.palette
+  }
+}
+
+//function passed to Reduxes Connect to dispatch to props
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changePalette: (colors) => dispatch(changePalette(colors))
+  }
+}
 
 class ColorPicker extends React.Component {
   state = {
@@ -17,7 +33,11 @@ class ColorPicker extends React.Component {
   };
 
   handleChange = (color) => {
+
+    let palette=this.props.palette;
+    palette[this.props.index]=color.hex.replace('#','');
     this.setState({ swatchColor: color.hex });
+    this.props.changePalette(palette);
   };
 
   render() {
@@ -46,4 +66,4 @@ class ColorPicker extends React.Component {
   }
 }
 
-export default ColorPicker;
+export default connect(mapStateToProps, mapDispatchToProps)(ColorPicker);

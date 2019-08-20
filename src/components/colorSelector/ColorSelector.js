@@ -5,6 +5,8 @@ import './index.css'
 import ColorSearch from "./ColorSearch"
 import PaletteBuilder from "./PaletteBuilder"
 import Steps from "../steps/Steps"
+import {changePage} from "../../actions/settings"
+
 
 //function passed to Reduxes Connect to populate store
 const mapStateToProps = (store) => {
@@ -16,7 +18,7 @@ const mapStateToProps = (store) => {
 //function passed to Reduxes Connect to dispatch to props
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    changePage:(page)=>dispatch(changePage(page))
   }
 }
 
@@ -44,19 +46,26 @@ class ColorSelector extends Component {
     e.target.classList.add("active");
   }
 
+  nextPage=function(e){
+    e.preventDefault();
+    e.stopPropagation();
+
+    this.props.changePage("PhraseSelector");
+  }
+
    render() {
-console.log(this.props.palette.join(''));
        return (
        <div id='colorSelector'>
          <header id='titleHeader'>
             <h1>Palette Selector</h1>
            <div id='pageIndicators'>
               <nav id='steps'>
-                <Steps name='Choose your palette' active={1} completed={0} />
-                <Steps name='Choose your phrase' active={1} completed={0} />
-                <Steps name='Design your pattern' active={1} completed={0} />
+                <Steps num={1} name='Choose your palette' active={1} completed={0} />
+                <Steps num={2} name='Choose your phrase' active={0} completed={0} />
+                <Steps num={3} name='Design your pattern' active={0} completed={0} />
               </nav>
-              <button id='nextPage' className={
+              <button id='nextPage' onClick={(e)=>this.nextPage(e)}
+              className={
                 (this.props.palette.join("")!=="ffffffffffffffffffffffffffffff")? "ready": ""
               } >Next ▸</button>
           </div>

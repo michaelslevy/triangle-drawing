@@ -27,11 +27,11 @@ class PaletteBuilder extends Component {
           <p>Click on color swatches to design the colors in your pattern</p>
           <div id='colorList'>
 
-             <ColorPicker initialColor={(this.props.palette[0])?"#"+this.props.palette[0]:"#ffffff"} />
-             <ColorPicker initialColor={(this.props.palette[1])?"#"+this.props.palette[1]:"#ffffff"} />
-             <ColorPicker initialColor={(this.props.palette[2])?"#"+this.props.palette[2]:"#ffffff"} />
-             <ColorPicker initialColor={(this.props.palette[3])?"#"+this.props.palette[3]:"#ffffff"} />
-             <ColorPicker initialColor={(this.props.palette[4])?"#"+this.props.palette[4]:"#ffffff"} />
+             <ColorPicker index="0" initialColor={(this.props.palette[0])?"#"+this.props.palette[0]:"#ffffff"} />
+             <ColorPicker index="1" initialColor={(this.props.palette[1])?"#"+this.props.palette[1]:"#ffffff"} />
+             <ColorPicker index="2" initialColor={(this.props.palette[2])?"#"+this.props.palette[2]:"#ffffff"} />
+             <ColorPicker index="3" initialColor={(this.props.palette[3])?"#"+this.props.palette[3]:"#ffffff"} />
+             <ColorPicker index="4" initialColor={(this.props.palette[4])?"#"+this.props.palette[4]:"#ffffff"} />
 
           </div>
         </div>
