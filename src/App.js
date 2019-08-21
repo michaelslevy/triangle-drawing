@@ -1,7 +1,6 @@
 import React, {Component } from 'react';
 import './App.css';
 import ColorSelector from "./components/colorSelector/ColorSelector"
-import PhraseSelector from "./components/phraseSelector/PhraseSelector"
 import Designer from "./components/designer/Designer"
 import { connect } from 'react-redux'
 
@@ -18,8 +17,6 @@ class App extends Component {
     switch(this.props.page){
       case "ColorSelector":
         return <ColorSelector />
-      case "PhraseSelector":
-        return <PhraseSelector />
       default:
         return <Designer />
       }

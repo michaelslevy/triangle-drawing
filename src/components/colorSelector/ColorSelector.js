@@ -50,7 +50,7 @@ class ColorSelector extends Component {
     e.preventDefault();
     e.stopPropagation();
 
-    this.props.changePage("PhraseSelector");
+    this.props.changePage("Designer");
   }
 
    render() {
@@ -59,11 +59,6 @@ class ColorSelector extends Component {
          <header id='titleHeader'>
             <h1>Palette Selector</h1>
            <div id='pageIndicators'>
-              <nav id='steps'>
-                <Steps num={1} name='Choose your palette' active={1} completed={0} />
-                <Steps num={2} name='Choose your repeat unit' active={0} completed={0} />
-                <Steps num={3} name='Design your pattern' active={0} completed={0} />
-              </nav>
               <button id='nextPage' onClick={(e)=>this.nextPage(e)}
               className={
                 (this.props.palette.join("")!=="ffffffffffffffffffffffffffffff")? "ready": ""

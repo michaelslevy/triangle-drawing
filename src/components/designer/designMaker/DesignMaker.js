@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './index.css'
-import DesignMaker from './designMaker/DesignMaker';
-import Grid from './grid/Grid';
 
-class Designer extends Component {
+
+class DesignMaker extends Component {
    render() {
 
      return (
        <div id='designer'>
-          <DesignMaker />
-          <Grid />
+           DesignMaker
        </div>
      );
   }
@@ -22,4 +20,4 @@ Designer.propTypes = {
 };*/
 
 //connects Login component to store
-export default Designer;
+export default DesignMaker;
