@@ -1,0 +1,17 @@
+#PhraseSelector{
+  padding:40px;
+}
+
+#shapePicker {
+  display:flex;
+  align-items: center;
+}
+
+#shapePicker button{
+  border:0;
+  height:90px;
+  width:90px;
+  border-radius:8px;
+  background:#fff;
+  margin-right:20px;
+}

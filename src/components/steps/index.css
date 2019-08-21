@@ -31,6 +31,11 @@
   padding:5px 10px;
 }
 
+.step.completed {
+  color:white;
+  background:#999;
+}
+
 #steps {
   display:flex;
   align-items:flex-flex-start;
