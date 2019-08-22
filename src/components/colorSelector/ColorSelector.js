@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import './index.css'
 import ColorSearch from "./ColorSearch"
 import PaletteBuilder from "./PaletteBuilder"
-import Steps from "../steps/Steps"
 import {changePage} from "../../actions/settings"
 
 
