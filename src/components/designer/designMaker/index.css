@@ -1,0 +1,45 @@
+#ShapeSelector {
+  margin-bottom:10px;
+  float:right;
+}
+
+#palettePicker {
+  float: left;
+  margin-bottom:10px;
+}
+
+#ShapeSelector  {
+  display: flex;
+}
+
+#ShapeSelector form {
+
+}
+
+#ShapeSelector button {
+  height:64px;
+  width:64px;
+  background: white;
+  border:0;
+  float:left;
+  margin-right: 10px;
+}
+
+#ShapeSelector input {
+  width:40px;
+  font-size:1em;
+  float:right;
+  padding:5px;
+  border:0;
+}
+
+#ShapeSelector label {
+  display:block;
+  width: 105px;
+  font-size:1em;
+  margin-bottom:10px;
+}
+
+#designControl {
+  clear:both;
+}

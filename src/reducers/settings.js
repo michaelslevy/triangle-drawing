@@ -1,8 +1,11 @@
 const initialState = {
   loading: true,
   palette: ["ffffff","ffffff","ffffff","ffffff","ffffff"],
-  template: "diamond",
-  page:"ColorSelector"
+  selectedColor: "",
+  shape: "rhombus",
+  width:3,
+  height:3,
+  page:"ColorSelector",
 }
 
 const settings = (state = initialState, action) => {
@@ -16,18 +19,34 @@ const settings = (state = initialState, action) => {
         palette:action.palette
       }
 
-    case "template_change":
-      return {
-        ...state,
-        loading: false,
-        template: action.template,
-        error:false
-      }
-
     case "page_change":
       return {
         ...state,
         page: action.page
+      }
+
+    case "shape_change":
+      return {
+        ...state,
+        shape: action.shape
+    }
+
+    case "width_change":
+      return {
+        ...state,
+        width: action.width
+      }
+
+    case "height_change":
+      return {
+        ...state,
+        height: action.height
+    }
+
+    case "selectedColor_change":
+      return {
+        ...state,
+        selectedColor: action.selectedColor
       }
 
     default:

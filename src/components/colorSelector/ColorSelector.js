@@ -6,15 +6,12 @@ import ColorSearch from "./ColorSearch"
 import PaletteBuilder from "./PaletteBuilder"
 import {changePage} from "../../actions/settings"
 
-
-//function passed to Reduxes Connect to populate store
 const mapStateToProps = (store) => {
   return {
     palette:store.settings.palette
   }
 }
 
-//function passed to Reduxes Connect to dispatch to props
 const mapDispatchToProps = (dispatch) => {
   return {
     changePage:(page)=>dispatch(changePage(page))

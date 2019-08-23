@@ -9,8 +9,8 @@ class Designer extends Component {
 
      return (
        <div id='designer'>
-          <DesignMaker />
-          <Grid />
+        <DesignMaker />
+        <Grid />
        </div>
      );
   }

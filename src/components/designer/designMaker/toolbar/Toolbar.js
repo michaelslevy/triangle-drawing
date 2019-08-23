@@ -9,7 +9,7 @@ class Toolbar extends Component {
      return (
        <div id='toolbar'>
           <Shape />
-          <Toolbar />
+          <Palette />
        </div>
      );
   }
