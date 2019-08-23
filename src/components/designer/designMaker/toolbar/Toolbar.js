@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Shape from "./Shape"
+import Palette from "./Palette"
 
-class Shape extends Component {
+class Toolbar extends Component {
    render() {
 
      return (
-       <div id='ShapeSelector'>
-          shape
+       <div id='toolbar'>
+          <Shape />
+          <Toolbar />
        </div>
      );
   }
@@ -18,4 +21,4 @@ Designer.propTypes = {
 };*/
 
 //connects Login component to store
-export default Shape;
+export default Toolbar;

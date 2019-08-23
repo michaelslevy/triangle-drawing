@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class Shape extends Component {
+class DesignControl extends Component {
    render() {
 
      return (
-       <div id='ShapeSelector'>
-          shape
+       <div id='designControl'>
+          Design Control
        </div>
      );
   }
@@ -18,4 +18,4 @@ Designer.propTypes = {
 };*/
 
 //connects Login component to store
-export default Shape;
+export default DesignControl;

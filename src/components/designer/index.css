@@ -1,5 +1,5 @@
-#grid, #designer {
-  width:50%;
+#grid, #designePane {
+  width:calc(50% - 80px);
   padding:40px;
   float:left;
 }
