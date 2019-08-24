@@ -51,15 +51,15 @@ class Shape extends Component {
        <div id='ShapeSelector'>
           <nav>
             <button
-            class={(this.props.shape==="rhombus")?" active ":""}
+            className={(this.props.shape==="rhombus")?" active ":""}
             onClick={(e)=>this.updateShapeHandler(e,"rhombus")}>
-              <img src={rhombus} width='54' />
+              <img src={rhombus} width='48' />
             </button>
 
             <button
-            class={(this.props.shape==="diamond")?" active ":""}
+            className={(this.props.shape==="diamond")?" active ":""}
             onClick={(e)=>this.updateShapeHandler(e,"diamond")}>
-              <img src={diamond} width='32' />
+              <img src={diamond} width='28' />
             </button>
           </nav>
 
