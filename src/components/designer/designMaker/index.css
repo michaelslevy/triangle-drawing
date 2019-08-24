@@ -73,3 +73,17 @@
   font-size:1.25em;
   color:#888;
 }
+
+#modifyPalette {
+  height:52px;
+  float:right;
+  border:0;
+  background:none;
+  color:#28B5D1;
+  transition: .3s background;
+  border-radius:5px;
+}
+
+#modifyPalette:hover {
+  background:white;
+}

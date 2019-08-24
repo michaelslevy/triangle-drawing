@@ -62,6 +62,7 @@ class Palette extends Component {
             className={(this.state.selectedColorSquare===4)?"colorBlock active":'colorBlock'}
             onClick={(e)=>this.selectColor(4,this.props.palette[4])}
             ></div>
+            <button id='modifyPalette'>Modify<br/>Palette</button>
           </div>
        </div>
      );
