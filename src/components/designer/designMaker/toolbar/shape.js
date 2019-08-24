@@ -50,8 +50,17 @@ class Shape extends Component {
      return (
        <div id='ShapeSelector'>
           <nav>
-            <button onClick={(e)=>this.updateShapeHandler(e,"rhombus")}><img src={rhombus} width='54' /></button>
-            <button onClick={(e)=>this.updateShapeHandler(e,"diamond")}><img src={diamond} width='32' /></button>
+            <button
+            class={(this.props.shape==="rhombus")?" active ":""}
+            onClick={(e)=>this.updateShapeHandler(e,"rhombus")}>
+              <img src={rhombus} width='54' />
+            </button>
+
+            <button
+            class={(this.props.shape==="diamond")?" active ":""}
+            onClick={(e)=>this.updateShapeHandler(e,"diamond")}>
+              <img src={diamond} width='32' />
+            </button>
           </nav>
 
           <form>

@@ -23,6 +23,17 @@
   border:0;
   float:left;
   margin-right: 10px;
+  border:solid 2px transparent;
+  padding:0;
+  border-radius:5px;
+}
+
+#ShapeSelector button.active{
+  border-color:#aaa;
+}
+
+#ShapeSelector button:focus {
+  outline:0;
 }
 
 #ShapeSelector input {
