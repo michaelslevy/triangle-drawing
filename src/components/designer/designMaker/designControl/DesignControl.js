@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Triangle from "../../../shapes/Triangle"
 
 class DesignControl extends Component {
    render() {
@@ -7,6 +8,9 @@ class DesignControl extends Component {
      return (
        <div id='designControl'>
           Design Control
+          <svg>
+            <Triangle side='150' />
+          </svg>
        </div>
      );
   }

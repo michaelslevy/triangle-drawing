@@ -51,3 +51,7 @@ h4 {
 .tabs {
   border-bottom:solid 1px #444;
 }
+
+button:focus {
+  outline: 0;
+}
