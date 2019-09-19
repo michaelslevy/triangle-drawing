@@ -48,7 +48,7 @@ class Triangle extends Component {
       ${this.state.p2[0]} ${this.state.p2[1]},
       ${this.state.p3[0]} ${this.state.p3[1]},
       ${this.state.p1[0]} ${this.state.p1[1]}`}
-      fill='red' />
+      fill={this.props.fill} />
     );
   }
 }
