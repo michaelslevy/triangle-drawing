@@ -9,7 +9,7 @@ class DesignControl extends Component {
        <div id='designControl'>
           Design Control
           <svg>
-            <Triangle side={150}  fill={'#555'} />
+            <Triangle side={150}  fill={'#555'} direction="down" />
           </svg>
        </div>
      );

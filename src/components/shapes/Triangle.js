@@ -36,11 +36,18 @@ class Triangle extends Component {
   }
 
   calculateCoordinates = function (){
-    //adjust offset
     let altitude = this.calculateHeight();
-    let p2=[this.props.side,0];
-    let p3=[(this.props.side/2),altitude];
-    this.setState({ p2, p3 });
+
+    if(this.props.direction==="up"){
+      let p1=[0,altitude]
+      let p2=[this.props.side,altitude];
+      let p3=[(this.props.side/2),0];
+      this.setState({ p1, p2, p3 });
+    } else {
+      let p2=[this.props.side,0];
+      let p3=[(this.props.side/2),altitude];
+      this.setState({ p2, p3 });
+    }
   }
 
   render() {
