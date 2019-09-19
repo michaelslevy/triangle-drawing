@@ -39,14 +39,15 @@ class Triangle extends Component {
     let altitude = this.calculateHeight();
 
     if(this.props.direction==="up"){
-      let p1=[0,altitude]
-      let p2=[this.props.side,altitude];
-      let p3=[(this.props.side/2),0];
+      let p1=[(0+this.props.x),(altitude+this.props.y)]
+      let p2=[(this.props.side+this.props.x),(altitude+this.props.y)];
+      let p3=[(this.props.side/2+this.props.x),this.props.y];
       this.setState({ p1, p2, p3 });
     } else {
-      let p2=[this.props.side,0];
-      let p3=[(this.props.side/2),altitude];
-      this.setState({ p2, p3 });
+      let p1=[this.props.x,this.props.y]
+      let p2=[(this.props.side+this.props.x),this.props.y];
+      let p3=[(this.props.side/2+this.props.x),(altitude+this.props.y)];
+      this.setState({ p1, p2, p3 });
     }
   }
 
