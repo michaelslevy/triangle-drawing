@@ -1,6 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Triangle from "../../../shapes/Triangle"
+import { connect } from 'react-redux'
+import Diamond from "../../../shapes/Diamond"
+
+const mapStateToProps = (store) => {
+  return {
+    width:store.settings.width,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+
+  }
+}
 
 class DesignControl extends Component {
    render() {
@@ -8,12 +21,7 @@ class DesignControl extends Component {
      return (
        <div id='designControl'>
           Design Control
-          <svg>
-            <Triangle side={50}  fill={'#555'} direction="up"  x={0} y={0} />
-            <Triangle side={50}  fill={'#999'} direction="down" x={25} y={0} />
-            <Triangle side={50}  fill={'#999'} direction="down"  x={0} y={50} />
-            <Triangle side={50}  fill={'#555'} direction="up" x={25} y={50} />
-          </svg>
+          <Diamond />
        </div>
      );
   }
@@ -25,4 +33,4 @@ Designer.propTypes = {
 };*/
 
 //connects Login component to store
-export default DesignControl;
+export default connect(mapStateToProps,mapDispatchToProps)(DesignControl);
