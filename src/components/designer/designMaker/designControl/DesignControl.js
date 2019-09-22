@@ -20,7 +20,6 @@ class DesignControl extends Component {
 
      return (
        <div id='designControl'>
-          Design Control
           <Diamond />
        </div>
      );

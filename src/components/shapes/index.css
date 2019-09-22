@@ -1,0 +1,22 @@
+.svgBuilder {
+  width:600px;
+  height:600px;
+  margin:auto;
+}
+#designePane {
+  height:100%;
+}
+
+#designControl {
+    display: flex;
+}
+
+#toolbar:after {
+  content:"";
+  display: table;
+  clear:both;
+}
+
+#toolbar {
+  margin-bottom:20px;
+}
