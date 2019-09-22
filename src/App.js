@@ -3,6 +3,13 @@ import './App.css';
 import ColorSelector from "./components/colorSelector/ColorSelector"
 import Designer from "./components/designer/Designer"
 import { connect } from 'react-redux'
+import reducer from './reducers';
+
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+
+// Note: this API requires redux@>=3.1.0
+const store = createStore(reducer, applyMiddleware(thunk));
 
 //function passed to Reduxes Connect to populate store
 const mapStateToProps = (store) => {

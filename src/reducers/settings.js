@@ -6,6 +6,7 @@ const initialState = {
   width:3,
   height:3,
   page:"ColorSelector",
+  shapeCoords:[]
 }
 
 const settings = (state = initialState, action) => {
