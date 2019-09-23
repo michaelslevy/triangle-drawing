@@ -22,6 +22,13 @@ const mapDispatchToProps = (dispatch) => {
 
 class Shape extends Component {
 
+  componentDidMount(){
+   this.props.updateDimensions({
+     width:this.props.width,
+     height:this.props.height
+   });
+  }
+
   updateShapeHandler=function(e, shape){
     e.preventDefault();
     e.stopPropagation();

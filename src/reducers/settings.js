@@ -6,7 +6,8 @@ const initialState = {
   width:3,
   height:3,
   page:"ColorSelector",
-  shapeCoords:[]
+  shapeCoords:[],
+  sideLength:50
 }
 
 const settings = (state = initialState, action) => {
@@ -45,6 +46,7 @@ const settings = (state = initialState, action) => {
     }
 
     case "shapeCoords_change":
+    console.log(action);
       return {
         ...state,
         shapeCoords: action.shapeCoords
