@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
+import {defineDiamondCoordinates} from "../helpers/calculations"
 
 // Note: this API requires redux@>=3.1.0
 const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -35,9 +36,9 @@ const changeHeight=height=>({
   height
 })
 
-const changeShapeCoords=coords=>({
+const changeShapeCoords=shapeCoords=>({
   type:"shapeCoords_change",
-  coords
+  shapeCoords
 })
 
 export const changeSelectedColor=selectedColor=>({
@@ -49,6 +50,6 @@ export const updateDimensions=function(dimensions){
     return function(dispatch){
       dispatch(changeWidth(dimensions.width));
       dispatch(changeHeight(dimensions.height));
-
+      dispatch(changeShapeCoords(defineDiamondCoordinates(dimensions.width)));
     }
 }

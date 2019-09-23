@@ -105,6 +105,10 @@ class Diamond extends Component {
 
   }
 
+  calculateDiamondHalf(position="top"){
+
+  }
+
    render() {
      return (
           <svg id='diamond' className='svgBuilder' style={{width:(this.state.side*this.props.width)}}>
