@@ -24,6 +24,7 @@ export const defineDiamondCoordinates=function(width,sideLength=50){
     startX=startX-xIncrement;
     for(let x=0; x<rowCount; x++ ){
       key++;
+
       coords.push(
         {
           x:(startX+(sideLength*x)),

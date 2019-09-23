@@ -21,11 +21,18 @@ const mapDispatchToProps = (dispatch) => {
 
 class Diamond extends Component {
 
+  getMicrotime=function(){
+    let d = new Date();
+    return d.getMilliseconds();
+  }
+
+  keyText=(id)=>"tri"+id+"-"+this.getMicrotime();
+
    render() {
      return (
           <svg id='diamond' className='svgBuilder' style={{width:500}}>
           {this.props.shapeCoords.map((coord) =>
-            <Triangle key={"triangle"+coord.key} id={"triangle"+coord.key} side={this.props.sideLength}  fill={'#555'} direction={coord.direction}  x={coord.x} y={coord.y} />
+            <Triangle key={this.keyText(coord.key)} id={this.keyText(coord.key)} side={this.props.sideLength}  fill={'#555'} direction={coord.direction}  x={coord.x} y={coord.y} />
           )}
           </svg>
      );
