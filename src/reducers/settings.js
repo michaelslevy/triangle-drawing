@@ -44,6 +44,12 @@ const settings = (state = initialState, action) => {
         height: action.height
     }
 
+    case "shapeCoords_change":
+      return {
+        ...state,
+        shapeCoords: action.shapeCoords
+    }
+
     case "selectedColor_change":
       return {
         ...state,

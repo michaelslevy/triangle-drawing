@@ -1,3 +1,10 @@
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from '../reducers';
+
+// Note: this API requires redux@>=3.1.0
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
 export const changePalette = palette => ({
   type: 'palette_change',
   palette
@@ -18,17 +25,30 @@ export const changeShape=shape=>({
   shape
 })
 
-export const changeWidth=width=>({
+const changeWidth=width=>({
   type:"width_change",
   width
 })
 
-export const changeHeight=height=>({
+const changeHeight=height=>({
   type:"height_change",
   height
+})
+
+const changeShapeCoords=coords=>({
+  type:"shapeCoords_change",
+  coords
 })
 
 export const changeSelectedColor=selectedColor=>({
   type:"selectedColor_change",
   selectedColor
 })
+
+export const updateDimensions=function(dimensions){
+    return function(dispatch){
+      dispatch(changeWidth(dimensions.width));
+      dispatch(changeHeight(dimensions.height));
+
+    }
+}

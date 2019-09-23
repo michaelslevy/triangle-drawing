@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import diamond from '../../../../diamond.svg'
 import rhombus from '../../../../rhombus.svg'
 import { connect } from 'react-redux'
-import {changeShape, changeWidth, changeHeight} from "../../../../actions/settings"
+import {changeShape, updateDimensions} from "../../../../actions/settings"
 
 const mapStateToProps = (store) => {
   return {
@@ -16,8 +16,7 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     changeShape:(shape)=>dispatch(changeShape(shape)),
-    changeWidth:(width)=>dispatch(changeWidth(width)),
-    changeHeight:(height)=>dispatch(changeHeight(height)),
+    updateDimensions:(dimensions)=>dispatch(updateDimensions(dimensions)),
   }
 }
 
@@ -34,15 +33,24 @@ class Shape extends Component {
     e.preventDefault();
     e.stopPropagation();
 
-    this.props.changeWidth(e.target.value);
-
+    let width=Number(e.target.value);
+    let dimensions={
+      width,
+      height:this.props.height
+    };
+   this.props.updateDimensions(dimensions);
   }
 
   updateHeightHandler=function(e){
     e.preventDefault();
     e.stopPropagation();
 
-    this.props.changeHeight(e.target.value);
+    let height=Number(e.target.value);
+    let dimensions={
+      width:this.props.width,
+      height
+    };
+    this.props.updateDimensions(dimensions);
   }
 
    render() {
