@@ -58,6 +58,14 @@ const settings = (state = initialState, action) => {
         selectedColor: action.selectedColor
       }
 
+    case "sideLength_change":
+        return {
+          ...state,
+          sideLength: action.sideLength
+    }
+
+
+
     default:
       return state
   }

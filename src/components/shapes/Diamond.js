@@ -30,9 +30,9 @@ class Diamond extends Component {
 
    render() {
      return (
-          <svg id='diamond' className='svgBuilder' style={{width:500}}>
+          <svg id='diamond' className='svgBuilder' style={{width:(this.props.sideLength*this.props.width)}}>
           {this.props.shapeCoords.map((coord) =>
-            <Triangle key={this.keyText(coord.key)} id={this.keyText(coord.key)} side={this.props.sideLength}  fill={'#555'} direction={coord.direction}  x={coord.x} y={coord.y} />
+            <Triangle key={this.keyText(coord.key)} id={this.keyText(coord.key)} side={this.props.sideLength} stroke='#888' strokeWidth={1} fill={'#555'} direction={coord.direction}  x={coord.x} y={coord.y} />
           )}
           </svg>
      );
