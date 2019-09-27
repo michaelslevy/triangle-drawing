@@ -46,11 +46,11 @@ class Triangle extends Component {
   }
 
   render() {
-    return (<polygon points={`${this.state.p1[0]} ${this.state.p1[1]},
+    return (<polygon points={`${this.state.p1[0]}  ${this.state.p1[1]},
       ${this.state.p2[0]} ${this.state.p2[1]},
       ${this.state.p3[0]} ${this.state.p3[1]},
       ${this.state.p1[0]} ${this.state.p1[1]}`}
-      fill={this.props.fill} stroke={this.props.stroke} stroke-width={this.props.strokeWidth} />
+      fill={this.props.fill} stroke={this.props.stroke} strokeWidth={this.props.strokeWidth} id={this.props.id} onClick={(e)=>this.props.handler(e, this.props.id)} />
     );
   }
 }

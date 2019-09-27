@@ -9,7 +9,8 @@ const mapStateToProps = (store) => {
   return {
     width:store.settings.width,
     sideLength:store.settings.sideLength,
-    shapeCoords:store.settings.shapeCoords
+    shapeCoords:store.settings.shapeCoords,
+    selectedColor:store.settings.selectedColor
   }
 }
 
@@ -21,9 +22,21 @@ const mapDispatchToProps = (dispatch) => {
 
 class Diamond extends Component {
 
+  constructor(props) {
+    super(props);
+    this.handler = this.handler.bind(this);
+  }
+
   getMicrotime=function(){
     let d = new Date();
     return d.getMilliseconds();
+  }
+
+  handler=function(e, id){
+      e.preventDefault();
+      e.stopPropagation();
+      let tri=document.getElementById(id);
+      tri.style.fill=this.props.selectedColor;
   }
 
   keyText=(id)=>"tri"+id+"-"+this.getMicrotime();
@@ -32,7 +45,7 @@ class Diamond extends Component {
      return (
           <svg id='diamond' className='svgBuilder' style={{width:(this.props.sideLength*this.props.width)}}>
           {this.props.shapeCoords.map((coord) =>
-            <Triangle key={this.keyText(coord.key)} id={this.keyText(coord.key)} side={this.props.sideLength} stroke='#888' strokeWidth={1} fill={'#555'} direction={coord.direction}  x={coord.x} y={coord.y} />
+            <Triangle key={this.keyText(coord.key)} handler={this.handler} id={"tri"+coord.key} side={this.props.sideLength} stroke='#888' strokeWidth={1} fill={'#555'} direction={coord.direction}  x={coord.x} y={coord.y} />
           )}
           </svg>
      );
