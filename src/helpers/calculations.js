@@ -76,3 +76,52 @@ export const defineDiamondCoordinates=function(width,sideLength=50){
   return coords;
 
 }
+
+export const calculateGrid=function(gridLength=15){
+  let gridWidth=document.getElementById("grid").clientWidth;
+  let sideLength=Number((gridWidth/gridLength).toFixed(1));
+  gridLength++;//add an extra for overflow
+  let height=window.innerHeight;
+  let rowHeight=Number(calculateTriangleAltittude(sideLength).toFixed(2));
+  let numRows=Number((Math.floor(height/rowHeight)+1).toFixed(2));
+  let xIncrement=sideLength/2;
+
+  let key=0;
+  let startX=0-xIncrement;
+  let startY=0;
+  let coords=[];
+
+
+
+  for(let rowCount=0;rowCount<numRows; rowCount++){
+    //alternate row start positions
+    startX=(rowCount%2==0)?0-xIncrement : 0 - xIncrement*2;
+
+    for(let x=0; x<gridLength; x++ ){
+      coords.push(
+        {
+          x:(startX+(sideLength*x)),
+          y:startY,
+          direction:"up",
+          side:sideLength,
+          key
+        });
+      //add adjacent down arrow
+        key++;
+        coords.push(
+        {
+          x:(startX+(sideLength*x+xIncrement)),
+          y:startY,
+          direction:"down",
+          side:sideLength,
+          key
+        });
+        key++;
+    }
+
+    startY+=rowHeight;
+
+  }
+  console.log(coords);
+  return coords;
+}

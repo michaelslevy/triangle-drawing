@@ -30,11 +30,6 @@ class Diamond extends Component {
     this.handler = this.handler.bind(this);
   }
 
-  getMicrotime=function(){
-    let d = new Date();
-    return d.getMilliseconds();
-  }
-
   handler=function(e, index){
       e.preventDefault();
       e.stopPropagation();
@@ -47,6 +42,11 @@ class Diamond extends Component {
         height:0
       };
      this.props.updateDimensions(dimensions);
+  }
+
+  getMicrotime=function(){
+    let d = new Date();
+    return d.getMilliseconds();
   }
 
   keyText=(id)=>"tri"+id+"-"+this.getMicrotime();

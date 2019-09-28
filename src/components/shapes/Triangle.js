@@ -32,6 +32,9 @@ class Triangle extends Component {
   calculateCoordinates = function (){
     let altitude = calculateTriangleAltittude(this.props.side);
 
+    console.log(this.props.x, this.props.y, this.props.side);
+
+
     if(this.props.direction==="up"){
       let p1=[(0+this.props.x),(altitude+this.props.y)]
       let p2=[(this.props.side+this.props.x),(altitude+this.props.y)];
