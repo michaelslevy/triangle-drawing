@@ -32,11 +32,12 @@ class Diamond extends Component {
     return d.getMilliseconds();
   }
 
-  handler=function(e, id){
+  handler=function(e, index){
       e.preventDefault();
       e.stopPropagation();
-      let tri=document.getElementById(id);
-      tri.style.fill=this.props.selectedColor;
+      console.log("index is:"+index); 
+      //let tri=document.getElementById(id);
+      //tri.style.fill=this.props.selectedColor;
   }
 
   keyText=(id)=>"tri"+id+"-"+this.getMicrotime();
@@ -45,7 +46,7 @@ class Diamond extends Component {
      return (
           <svg id='diamond' className='svgBuilder' style={{width:(this.props.sideLength*this.props.width)}}>
           {this.props.shapeCoords.map((coord) =>
-            <Triangle key={this.keyText(coord.key)} handler={this.handler} id={"tri"+coord.key} side={this.props.sideLength} stroke='#888' strokeWidth={1} fill={'#555'} direction={coord.direction}  x={coord.x} y={coord.y} />
+            <Triangle key={this.keyText(coord.key)} handler={this.handler} index={coord.key} side={this.props.sideLength} stroke='#888' strokeWidth={1} fill={'#555'} direction={coord.direction}  x={coord.x} y={coord.y} />
           )}
           </svg>
      );

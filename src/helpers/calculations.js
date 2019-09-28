@@ -17,7 +17,7 @@ export const defineDiamondCoordinates=function(width,sideLength=50){
   let startX=diamondPhysicalWidth/2;
   let startY=0;
   let coords=[];
-  let key=1;
+  let key=-1;
 
   //produce top
   for(let rowCount=1;rowCount<width+1; rowCount++){
