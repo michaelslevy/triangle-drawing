@@ -51,6 +51,11 @@ const changeSideLength=sideLength=>({
   sideLength
 })
 
+export const changeColorChart=colorChart=>({
+  type:"colorChart_change",
+  colorChart
+})
+
 export const updateDimensions=function(dimensions){
     return function(dispatch){
       dispatch(changeWidth(dimensions.width));

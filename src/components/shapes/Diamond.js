@@ -4,19 +4,22 @@ import Triangle from "./Triangle"
 import { connect } from 'react-redux'
 import { calculateTriangleAltittude } from "../../helpers/calculations"
 import "./index.css"
+import {changeColorChart,updateDimensions} from "../../actions/settings"
 
 const mapStateToProps = (store) => {
   return {
     width:store.settings.width,
     sideLength:store.settings.sideLength,
     shapeCoords:store.settings.shapeCoords,
-    selectedColor:store.settings.selectedColor
+    selectedColor:store.settings.selectedColor,
+    colorChart:store.settings.colorChart
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    changeColorChart:(colorChart)=>dispatch(changeColorChart(colorChart)),
+    updateDimensions:(dimensions)=>dispatch(updateDimensions(dimensions)),
   }
 }
 
@@ -35,9 +38,15 @@ class Diamond extends Component {
   handler=function(e, index){
       e.preventDefault();
       e.stopPropagation();
-      console.log("index is:"+index); 
-      //let tri=document.getElementById(id);
-      //tri.style.fill=this.props.selectedColor;
+      let colorChart=this.props.colorChart;
+      colorChart[index]=this.props.selectedColor;
+      this.props.changeColorChart(colorChart);
+
+      let dimensions={
+        width:this.props.width,
+        height:0
+      };
+     this.props.updateDimensions(dimensions);
   }
 
   keyText=(id)=>"tri"+id+"-"+this.getMicrotime();
@@ -46,7 +55,7 @@ class Diamond extends Component {
      return (
           <svg id='diamond' className='svgBuilder' style={{width:(this.props.sideLength*this.props.width)}}>
           {this.props.shapeCoords.map((coord) =>
-            <Triangle key={this.keyText(coord.key)} handler={this.handler} index={coord.key} side={this.props.sideLength} stroke='#888' strokeWidth={1} fill={'#555'} direction={coord.direction}  x={coord.x} y={coord.y} />
+            <Triangle key={this.keyText(coord.key)} handler={this.handler} index={coord.key} side={this.props.sideLength} stroke='#888' strokeWidth={1} fill={(this.props.colorChart[coord.key])?"#"+this.props.colorChart[coord.key]:"#555"} direction={coord.direction}  x={coord.x} y={coord.y} />
           )}
           </svg>
      );

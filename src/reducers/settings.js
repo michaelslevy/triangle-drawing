@@ -1,6 +1,7 @@
 const initialState = {
   loading: true,
   palette: ["ffffff","ffffff","ffffff","ffffff","ffffff"],
+  colorChart:[],
   selectedColor: "",
   shape: "rhombus",
   width:3,
@@ -62,6 +63,12 @@ const settings = (state = initialState, action) => {
         return {
           ...state,
           sideLength: action.sideLength
+    }
+
+    case "colorChart_change":
+      return {
+          ...state,
+          colorChart: action.colorChart
     }
 
 
