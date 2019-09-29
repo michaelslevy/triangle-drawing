@@ -23,8 +23,15 @@ const mapDispatchToProps = (dispatch) => {
 class Grid extends Component {
 
   componentDidMount(){
+    const $this=this;
     let gridCoords=calculateGrid();
     this.props.changeGridCoords(gridCoords);
+
+    window.addEventListener("resize", function(){
+      gridCoords=calculateGrid();
+      $this.props.changeGridCoords(gridCoords);
+    });
+
   }
 
   getMicrotime=function(){
