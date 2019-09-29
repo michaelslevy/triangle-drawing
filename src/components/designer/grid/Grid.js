@@ -3,35 +3,28 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { calculateGrid } from "../../../helpers/calculations"
 import Triangle from "../../shapes/Triangle"
-
+import {changeGridCoords} from "../../../actions/settings"
 
 
 //function passed to Reduxes Connect to populate store
 const mapStateToProps = (store) => {
   return {
-
+    gridCoords:store.settings.gridCoords,
   }
 }
 
 //function passed to Reduxes Connect to dispatch to props
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    changeGridCoords:(gridCoords)=>dispatch(changeGridCoords(gridCoords))
   }
 }
 
 class Grid extends Component {
 
-  constructor(){
-    super();
-    this.state={
-      gridCoords:[]
-    }
-  }
-
   componentDidMount(){
     let gridCoords=calculateGrid();
-    this.setState({gridCoords});
+    this.props.changeGridCoords(gridCoords);
   }
 
   getMicrotime=function(){
@@ -44,14 +37,13 @@ class Grid extends Component {
   handler=function(e, index){
       e.preventDefault();
       e.stopPropagation();
-  }  
+  }
 
   render() {
-
      return (
        <div id='grid'>
         <svg width="100%">
-        {this.state.gridCoords.map((coord) =>
+        {this.props.gridCoords.map((coord) =>
           <Triangle key={this.keyText(coord.key)} handler={this.handler} index={coord.key} id={this.keyText(coord.key)} side={coord.side} stroke='#888' strokeWidth={1} fill={"#555"} direction={coord.direction}  x={coord.x} y={coord.y} />
         )}
         </svg>

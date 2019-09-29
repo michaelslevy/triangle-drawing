@@ -2,6 +2,8 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
 import {defineDiamondCoordinates} from "../helpers/calculations"
+import {CalculateTriangleGridColorPattern} from "../helpers/calculateTriangleColorPattern"
+
 
 // Note: this API requires redux@>=3.1.0
 const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -56,6 +58,11 @@ export const changeColorChart=colorChart=>({
   colorChart
 })
 
+export const changeGridCoords=gridCoords=>({
+  type:"gridCoords_change",
+  gridCoords
+})
+
 export const updateDimensions=function(dimensions){
     return function(dispatch){
       dispatch(changeWidth(dimensions.width));
@@ -66,4 +73,10 @@ export const updateDimensions=function(dimensions){
       dispatch(changeSideLength(sideLength));
       dispatch(changeShapeCoords(defineDiamondCoordinates(dimensions.width, sideLength)));
     }
+}
+
+export const colorGridDiamond=function(colorMap, dimensions){
+  return function(dispatch){
+    let gridColorMap=new CalculateTriangleGridColorPattern(colorMap, dimensions.width);
+  }
 }

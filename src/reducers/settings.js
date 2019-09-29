@@ -8,7 +8,8 @@ const initialState = {
   height:3,
   page:"ColorSelector",
   shapeCoords:[],
-  sideLength:50
+  sideLength:50,
+  gridCoords:[]
 }
 
 const settings = (state = initialState, action) => {
@@ -69,6 +70,12 @@ const settings = (state = initialState, action) => {
       return {
           ...state,
           colorChart: action.colorChart
+    }
+
+    case "gridCoords_change":
+      return {
+          ...state,
+          gridCoords: action.gridCoords
     }
 
 

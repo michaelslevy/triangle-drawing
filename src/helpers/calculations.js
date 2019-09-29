@@ -122,6 +122,5 @@ export const calculateGrid=function(gridLength=15){
     startY+=rowHeight;
 
   }
-  console.log(coords);
   return coords;
 }
