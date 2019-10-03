@@ -12,9 +12,17 @@ export class CalculateTriangleGridColorPattern {
         this.gridRows=[];
 
         this.getRowLengths();
+        this.fillColorMap();
         this.getIndexes();
         this.mapDiamondRows();
         this.mapGridRows();
+    }
+
+    fillColorMap=function(){
+      let length=this.sumArray(this.rowLengths);
+      for(let x=0; x<length; x++){
+        this.colorMap[x]=(this.colorMap[x])?this.colorMap[x]:"555";
+      }
     }
 
     getIncrement=function(x){
@@ -94,6 +102,8 @@ export class CalculateTriangleGridColorPattern {
           let start2=this.findMapIndex(jump);
           let stop2=this.findNumTri(this.rowLengths[jump]);
           let section2=map2.splice(start2,stop2);
+
+          console.log(this.colorMap,section1,section2);
 
           this.diamondRows.push([...section1,...section2]);
       }

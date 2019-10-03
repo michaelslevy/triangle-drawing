@@ -67,6 +67,8 @@ export const updateDimensions=function(dimensions){
     return function(dispatch){
       dispatch(changeWidth(dimensions.width));
       dispatch(changeHeight(dimensions.height));
+      let numberOfTriangles=(dimensions.shape=="diamond")? dimensions.width*2:dimensions.width*dimensions.height;
+
       let maxWidth=(Number(document.getElementById('designControl').clientWidth)*.9)/dimensions.width;
       let maxHeight=(Number(document.getElementById('designControl').offsetHeight))/(dimensions.width*2);
       let sideLength=(maxWidth<=maxHeight)?maxWidth:maxHeight;

@@ -43,7 +43,8 @@ class Shape extends Component {
     let width=Number(e.target.value);
     let dimensions={
       width,
-      height:this.props.height
+      height:this.props.height,
+      shape: this.props.shape
     };
    this.props.updateDimensions(dimensions);
   }
@@ -55,7 +56,8 @@ class Shape extends Component {
     let height=Number(e.target.value);
     let dimensions={
       width:this.props.width,
-      height
+      height,
+      shape: this.props.shape
     };
     this.props.updateDimensions(dimensions);
   }
