@@ -85,7 +85,7 @@ export const colorGridDiamond=function(colorMap, dimensions, gridCoords){
     if(grid){
         for (let i=0; i<grid.length; i++){
           grid[i].color=gridColorMap[colorIndex];
-          colorIndex=(colorIndex<=gridColorMap.length)?colorIndex+1:0;
+          colorIndex=(colorIndex<(gridColorMap.length-1))?colorIndex+1:0;
         }
         dispatch(changeGridCoords(grid));
       } else {

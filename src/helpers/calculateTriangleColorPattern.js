@@ -103,8 +103,6 @@ export class CalculateTriangleGridColorPattern {
           let stop2=this.findNumTri(this.rowLengths[jump]);
           let section2=map2.splice(start2,stop2);
 
-          console.log(this.colorMap,section1,section2);
-
           this.diamondRows.push([...section1,...section2]);
       }
     }
@@ -118,8 +116,8 @@ export class CalculateTriangleGridColorPattern {
         let row=[];
         let firstRow=[...this.diamondRows[i]];
         row.push(...firstRow.splice(offset));
-        if(offset>this.width){offset++;}
-        else if (offset>this.width){ offset--;}
+        if(offset>=this.width){offset++;}
+        else if (offset>this.width+1){ offset--;}
         let repeatRow=[...this.diamondRows[i]];
 
           if(repeatRow.length>0){
