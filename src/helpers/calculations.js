@@ -77,7 +77,7 @@ export const defineDiamondCoordinates=function(width,sideLength=50){
 
 }
 
-export const calculateGrid=function(gridLength=15){
+export const calculateGrid=function(gridLength=15, color='555555'){
   let gridWidth=document.getElementById("grid").clientWidth;
   let sideLength=Number((gridWidth/gridLength).toFixed(1));
   gridLength++;//add an extra for overflow
@@ -91,8 +91,6 @@ export const calculateGrid=function(gridLength=15){
   let startY=0;
   let coords=[];
 
-
-
   for(let rowCount=0;rowCount<numRows; rowCount++){
     //alternate row start positions
     startX=(rowCount%2==0)?0-xIncrement : 0 - xIncrement*2;
@@ -104,6 +102,7 @@ export const calculateGrid=function(gridLength=15){
           y:startY,
           direction:"up",
           side:sideLength,
+          color:color,
           key
         });
       //add adjacent down arrow
@@ -114,6 +113,7 @@ export const calculateGrid=function(gridLength=15){
           y:startY,
           direction:"down",
           side:sideLength,
+          color:color,
           key
         });
         key++;

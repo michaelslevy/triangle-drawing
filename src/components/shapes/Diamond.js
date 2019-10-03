@@ -13,6 +13,7 @@ const mapStateToProps = (store) => {
     shapeCoords:store.settings.shapeCoords,
     selectedColor:store.settings.selectedColor,
     colorChart:store.settings.colorChart,
+    gridCoords:store.settings.gridCoords
   }
 }
 
@@ -20,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     changeColorChart:(colorChart)=>dispatch(changeColorChart(colorChart)),
     updateDimensions:(dimensions)=>dispatch(updateDimensions(dimensions)),
-    colorGridDiamond:(colorChart, dimensions)=>dispatch(colorGridDiamond(colorChart, dimensions))
+    colorGridDiamond:(colorChart, dimensions, gridCoords)=>dispatch(colorGridDiamond(colorChart, dimensions, gridCoords))
   }
 }
 
@@ -43,7 +44,7 @@ class Diamond extends Component {
         height:0
       };
      this.props.updateDimensions(dimensions);
-     this.props.colorGridDiamond(colorChart, dimensions);
+     this.props.colorGridDiamond(colorChart, dimensions, this.props.gridCoords);
 
   }
 

@@ -75,8 +75,19 @@ export const updateDimensions=function(dimensions){
     }
 }
 
-export const colorGridDiamond=function(colorMap, dimensions){
+export const colorGridDiamond=function(colorMap, dimensions, gridCoords){
   return function(dispatch){
-    let gridColorMap=new CalculateTriangleGridColorPattern(colorMap, dimensions.width);
+    let gridColorMap=new CalculateTriangleGridColorPattern(colorMap, dimensions.width).gridRows;
+    let grid=[...gridCoords];
+    let colorIndex=0;
+    if(grid){
+        for (let i=0; i<grid.length; i++){
+          grid[i].color=gridColorMap[colorIndex];
+          colorIndex=(colorIndex<=gridColorMap.length)?colorIndex+1:0;
+        }
+        dispatch(changeGridCoords(grid));
+      } else {
+        console.error("Grid Coordinates not found.");
+    }
   }
 }

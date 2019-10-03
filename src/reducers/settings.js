@@ -9,7 +9,7 @@ const initialState = {
   page:"ColorSelector",
   shapeCoords:[],
   sideLength:50,
-  gridCoords:[]
+  gridCoords:[] 
 }
 
 const settings = (state = initialState, action) => {

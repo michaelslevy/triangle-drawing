@@ -1,16 +1,20 @@
 export class CalculateTriangleGridColorPattern {
-    constructor(colorMap, width) {
+    constructor(colorMap, width, gridWidth=15) {
         this.width = width;
         this.colorMap=colorMap;
+        this.gridWidth=gridWidth+1;
+        if(this.validate()===false){ return false;}
 
         this.rowIndexes = [];
         this.incrementer = 0;
         this.rowLengths=[];
         this.diamondRows=[];
+        this.gridRows=[];
 
         this.getRowLengths();
         this.getIndexes();
         this.mapDiamondRows();
+        this.mapGridRows();
     }
 
     getIncrement=function(x){
@@ -19,6 +23,22 @@ export class CalculateTriangleGridColorPattern {
         this.incrementer=-1;
       } else if(x==this.width-1){
         this.incrementer=0;
+      }
+    }
+
+    validate=function(){
+      return true;
+      if(!this.width){
+        console.error("width neded to map grid color");
+        return false;
+      }
+      if(!this.colorMap){
+        console.error("colorMap neded to map grid color");
+        return false;
+      }
+      if(!this.gridWidth){
+        console.error("gridWidth neded to map grid color");
+        return false;
       }
     }
 
@@ -46,6 +66,7 @@ export class CalculateTriangleGridColorPattern {
       return sum;
     }
 
+    //include alternate triangles in count
     findNumTri=(num)=>num*2-1;
 
     //get tri numbers and add up lengths
@@ -77,4 +98,30 @@ export class CalculateTriangleGridColorPattern {
           this.diamondRows.push([...section1,...section2]);
       }
     }
-}
+
+    mapGridRows=function(){
+      //loop through rows of grid
+        //Loop through diamond color map
+        //first row offsets
+      let offset=0;
+      for(let i=0; i<this.diamondRows.length; i++ ){
+        let row=[];
+        let firstRow=[...this.diamondRows[i]];
+        row.push(...firstRow.splice(offset));
+        if(offset>this.width){offset++;}
+        else if (offset>this.width){ offset--;}
+        let repeatRow=[...this.diamondRows[i]];
+
+          if(repeatRow.length>0){
+            while(row.length<this.gridWidth*2){
+              row.push(...repeatRow);
+            }
+          } else {
+            row.push("undefined");
+          }
+
+        row=row.splice(0,(this.gridWidth*2));
+        this.gridRows.push(...row);
+    }
+    }
+  }
