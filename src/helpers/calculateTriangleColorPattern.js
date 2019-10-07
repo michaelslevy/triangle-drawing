@@ -107,6 +107,7 @@ export class CalculateTriangleGridColorPattern {
       }
     }
 
+    //makes a set of colors the lenth of the grid and the height of the diamond
     mapGridRows=function(){
       //loop through rows of grid
         //Loop through diamond color map
@@ -115,9 +116,14 @@ export class CalculateTriangleGridColorPattern {
       for(let i=0; i<this.diamondRows.length; i++ ){
         let row=[];
         let firstRow=[...this.diamondRows[i]];
-        row.push(...firstRow.splice(offset));
-        if(offset>=this.width){offset++;}
-        else if (offset>this.width+1){ offset--;}
+        let spliced=[...firstRow.splice(offset)];
+        row.push(...spliced);
+
+        if(i<this.width-1){offset++;}
+        else if (i>=this.width){ offset=offset-1;}
+
+
+
         let repeatRow=[...this.diamondRows[i]];
 
           if(repeatRow.length>0){

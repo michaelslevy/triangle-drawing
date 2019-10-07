@@ -93,14 +93,15 @@ export const calculateGrid=function(gridLength=15, color='555555'){
 
   for(let rowCount=0;rowCount<numRows; rowCount++){
     //alternate row start positions
-    startX=(rowCount%2==0)?0-xIncrement : 0 - xIncrement*2;
+    startX=0-xIncrement;
 
     for(let x=0; x<gridLength; x++ ){
+      let directions=(rowCount%2===0)?["up","down"]:["down","up"];
       coords.push(
         {
           x:(startX+(sideLength*x)),
           y:startY,
-          direction:"up",
+          direction:directions[0],
           side:sideLength,
           color:color,
           key
@@ -111,7 +112,7 @@ export const calculateGrid=function(gridLength=15, color='555555'){
         {
           x:(startX+(sideLength*x+xIncrement)),
           y:startY,
-          direction:"down",
+          direction:directions[1],
           side:sideLength,
           color:color,
           key
