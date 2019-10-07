@@ -50,16 +50,17 @@ class ColorSelector extends Component {
   }
 
    render() {
+      let palette=this.props.palette;
        return (
        <div id='colorSelector'>
          <header id='titleHeader'>
             <h1>Palette Selector</h1>
            <div id='pageIndicators'>
               <button id='nextPage'
-              disabled={(this.props.palette.join("")!=="ffffffffffffffffffffffffffffff")? "": " disabled "}
+              disabled={(palette.join("")!=="ffffffffffffffffffffffffffffff")? "": " disabled "}
               onClick={(e)=>this.nextPage(e)}
               className={
-                (this.props.palette.join("")!=="ffffffffffffffffffffffffffffff")? "ready": ""
+                (palette.join("")!=="ffffffffffffffffffffffffffffff")? "ready": ""
               }
               >Next ▸</button>
           </div>

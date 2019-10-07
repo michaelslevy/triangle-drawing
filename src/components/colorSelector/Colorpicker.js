@@ -15,6 +15,7 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     changePalette: (colors) => dispatch(changePalette(colors))
+
   }
 }
 
@@ -33,8 +34,7 @@ class ColorPicker extends React.Component {
   };
 
   handleChange = (color) => {
-
-    let palette=this.props.palette;
+    let palette=[...this.props.palette];
     palette[this.props.index]=color.hex.replace('#','');
     this.setState({ swatchColor: color.hex });
     this.props.changePalette(palette);
