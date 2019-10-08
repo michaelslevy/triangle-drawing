@@ -19,10 +19,12 @@ export class CalculateTriangleGridColorPattern {
     }
 
     fillColorMap=function(){
-      let length=this.sumArray(this.rowLengths);
+      let length=this.findTotal(this.rowLengths);
+      console.log(length);
       for(let x=0; x<length; x++){
         this.colorMap[x]=(this.colorMap[x])?this.colorMap[x]:"555";
       }
+      console.log(this.rowLengths,length,this.colorMap);
     }
 
     getIncrement=function(x){
@@ -35,7 +37,6 @@ export class CalculateTriangleGridColorPattern {
     }
 
     validate=function(){
-      return true;
       if(!this.width){
         console.error("width neded to map grid color");
         return false;
@@ -48,6 +49,7 @@ export class CalculateTriangleGridColorPattern {
         console.error("gridWidth neded to map grid color");
         return false;
       }
+      return true;
     }
 
     getRowLengths=function(){
@@ -68,10 +70,12 @@ export class CalculateTriangleGridColorPattern {
       }
     }
 
-    sumArray=function(list){
-      const add = (a, b) =>a + b;
-      const sum = list.reduce(add);
-      return sum;
+    findTotal=function(list){
+      let total=0;
+      for(let x=0;x<list.length;x++){
+        total+=list[x]*2-1;
+      }
+      return total;
     }
 
     //include alternate triangles in count
