@@ -3,6 +3,8 @@ import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
 import {defineDiamondCoordinates} from "../helpers/calculations"
 import {CalculateTriangleGridColorPattern} from "../helpers/calculateTriangleColorPattern"
+import {TranslateGridColor} from "../helpers/TranslateGridColor";
+
 
 
 // Note: this API requires redux@>=3.1.0
@@ -73,6 +75,7 @@ export const updateDimensions=function(dimensions){
       let maxHeight=(Number(document.getElementById('designControl').offsetHeight))/(dimensions.width*2);
       let sideLength=(maxWidth<=maxHeight)?maxWidth:maxHeight;
       dispatch(changeSideLength(sideLength));
+      let translationMap=new TranslateGridColor(dimensions);
       dispatch(changeShapeCoords(defineDiamondCoordinates(dimensions.width, sideLength)));
     }
 }
