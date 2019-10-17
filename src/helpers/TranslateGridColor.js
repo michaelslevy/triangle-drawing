@@ -4,16 +4,20 @@
 
 //!!Gets executed when diamond dimensions change and when toolbar component loads
 export class TranslateGridColor {
-    constructor(dimensions, gridwidth=15) {
+    constructor(dimensions, gridWidth=15) {
         this.width = dimensions.width;
-        this.gridWidth=15+1;
+        this.gridWidth=gridWidth;
         this.incrementer=0;
         this.rowLengths=[];
-        this.rowUnits=[];
+        this.mapIndexes=[];
+        this.pairedAdjacentIndexRows=[];
 
         //get number of triangles in diamond rows
         this.getRowLengths();
-        console.log(this.rowLengths);
+        this.getMapIndexes();
+        this.matchAdjacentIndexRows();
+        this.appendFirstRow();
+        console.log(this.pairedAdjacentIndexRows);
     }
 
     getRowLengths=function(){
@@ -36,5 +40,38 @@ export class TranslateGridColor {
       }
     }
 
+    getMapIndexes=function(){
+      //pair two rows of diamond: current & current+3
+      //offset first set
+      let mapIndex=0;
+      for(let i=0; i<this.rowLengths.length; i++ ){
+
+        let row=[];
+        for(let ii=0; ii<this.rowLengths[i];ii++){
+          row.push(mapIndex);
+          mapIndex++;
+        }
+        this.mapIndexes.push(row);
+      }
+    }
+
+    matchAdjacentIndexRows=function(){
+        //top or bottom of the diamond
+        for(let i=0; i<this.mapIndexes.length; i++ ){
+          let jump=(i<this.width)?i+this.width:i-this.width;
+          this.pairedAdjacentIndexRows.push({repeatRow:[...this.mapIndexes[i],...this.mapIndexes[jump]]});
+        }
+    }
+
+    appendFirstRow=function(){
+      let offset=0;
+      for(let i=0; i<this.pairedAdjacentIndexRows.length; i++ ){
+        let row=[];
+        let firstRow=[...this.pairedAdjacentIndexRows[i].repeatRow];
+        this.pairedAdjacentIndexRows[i].firstRow=[...firstRow.splice(offset)];
+        if(i<this.width-1){offset++;}
+        else if (i>=this.width){ offset=offset-1;}
+      }
+    }
 
 }
