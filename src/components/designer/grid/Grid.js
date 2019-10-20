@@ -29,7 +29,7 @@ class Grid extends Component {
     this.props.changeGridCoords(gridCoords);
 
     window.addEventListener("resize", function(){
-      gridCoords=calculateGrid(15, this.props.palette[0]);
+      gridCoords=calculateGrid(15, $this.props.palette[0]);
       $this.props.changeGridCoords(gridCoords);
     });
 
