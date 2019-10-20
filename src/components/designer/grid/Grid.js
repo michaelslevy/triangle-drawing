@@ -10,6 +10,7 @@ import {changeGridCoords} from "../../../actions/settings"
 const mapStateToProps = (store) => {
   return {
     gridCoords:store.settings.gridCoords,
+    palette:store.settings.palette
   }
 }
 
@@ -24,11 +25,11 @@ class Grid extends Component {
 
   componentDidMount(){
     const $this=this;
-    let gridCoords=calculateGrid();
+    let gridCoords=calculateGrid(15, this.props.palette[0]);
     this.props.changeGridCoords(gridCoords);
 
     window.addEventListener("resize", function(){
-      gridCoords=calculateGrid();
+      gridCoords=calculateGrid(15, this.props.palette[0]);
       $this.props.changeGridCoords(gridCoords);
     });
 

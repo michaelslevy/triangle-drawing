@@ -1,8 +1,9 @@
 export class CalculateTriangleGridColorPattern {
-    constructor(colorMap, width, gridWidth=15) {
+    constructor(colorMap, width, gridWidth=15, defaultColor="555") {
         this.width = width;
         this.colorMap=colorMap;
         this.gridWidth=gridWidth+1;
+        this.defaultColor=defaultColor;
         if(this.validate()===false){ return false;}
 
         this.rowIndexes = [];
@@ -22,7 +23,7 @@ export class CalculateTriangleGridColorPattern {
       let length=this.findTotal(this.rowLengths);
       console.log(length);
       for(let x=0; x<length; x++){
-        this.colorMap[x]=(this.colorMap[x])?this.colorMap[x]:"555";
+        this.colorMap[x]=(this.colorMap[x])?this.colorMap[x]:this.defaultColor;
       }
       console.log(this.rowLengths,length,this.colorMap);
     }

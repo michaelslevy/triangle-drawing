@@ -13,7 +13,8 @@ const mapStateToProps = (store) => {
     shapeCoords:store.settings.shapeCoords,
     selectedColor:store.settings.selectedColor,
     colorChart:store.settings.colorChart,
-    gridCoords:store.settings.gridCoords
+    gridCoords:store.settings.gridCoords,
+    palette:store.settings.palette
   }
 }
 
@@ -21,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     changeColorChart:(colorChart)=>dispatch(changeColorChart(colorChart)),
     updateDimensions:(dimensions)=>dispatch(updateDimensions(dimensions)),
-    colorGridDiamond:(colorChart, dimensions, gridCoords)=>dispatch(colorGridDiamond(colorChart, dimensions, gridCoords))
+    colorGridDiamond:(colorChart, dimensions, gridCoords, defaultColor)=>dispatch(colorGridDiamond(colorChart, dimensions, gridCoords,defaultColor))
   }
 }
 
@@ -44,7 +45,7 @@ class Diamond extends Component {
         height:0
       };
      this.props.updateDimensions(dimensions);
-     this.props.colorGridDiamond(colorChart, dimensions, this.props.gridCoords);
+     this.props.colorGridDiamond(colorChart, dimensions, this.props.gridCoords, this.props.palette[0]);
 
   }
 
@@ -59,7 +60,7 @@ class Diamond extends Component {
      return (
           <svg id='diamond' className='svgBuilder' style={{width:(this.props.sideLength*this.props.width)}}>
           {this.props.shapeCoords.map((coord) =>
-            <Triangle key={this.keyText(coord.key)} handler={this.handler} index={coord.key} side={this.props.sideLength} stroke='#888' strokeWidth={1} fill={(this.props.colorChart[coord.key])?"#"+this.props.colorChart[coord.key]:"#555"} direction={coord.direction}  x={coord.x} y={coord.y} />
+            <Triangle key={this.keyText(coord.key)} handler={this.handler} index={coord.key} side={this.props.sideLength} stroke='#888' strokeWidth={1} fill={(this.props.colorChart[coord.key])?"#"+this.props.colorChart[coord.key]:"#"+this.props.palette[0]} direction={coord.direction}  x={coord.x} y={coord.y} />
           )}
           </svg>
      );

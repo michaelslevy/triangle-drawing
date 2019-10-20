@@ -77,9 +77,9 @@ export const updateDimensions=function(dimensions){
     }
 }
 
-export const colorGridDiamond=function(colorMap, dimensions, gridCoords){
+export const colorGridDiamond=function(colorMap, dimensions, gridCoords, defaultColor='555'){
   return function(dispatch){
-    let gridColorMap=new CalculateTriangleGridColorPattern(colorMap, dimensions.width).gridRows;
+    let gridColorMap=new CalculateTriangleGridColorPattern(colorMap, dimensions.width, 15, defaultColor).gridRows;
     let grid=[...gridCoords];
     let colorIndex=0;
     if(grid){
