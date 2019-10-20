@@ -5,21 +5,26 @@
 //!!Gets executed when diamond dimensions change and when toolbar component loads
 export class TranslateGridColor {
     constructor(dimensions, gridWidth=15) {
-        this.width = dimensions.width;
+        this.width = (dimensions.width)?dimensions.width:3;
         this.gridWidth=gridWidth;
         this.incrementer=0;
         this.rowLengths=[];
         this.mapIndexes=[];
         this.pairedAdjacentIndexRows=[];
+        this.gridMap=[];
+        this.translationMap=[];
 
         //get number of triangles in diamond rows
         this.getRowLengths();
         this.getMapIndexes();
         this.matchAdjacentIndexRows();
         this.appendFirstRow();
-        console.log(this.pairedAdjacentIndexRows);
+        //map of grid colors corresponding to index in shape
+        this.buildGridMap();
+        //map coresponding grid index to shape map position
+        this.buildTranslationMap();
+        console.log(this.translationMap);
     }
-
     getRowLengths=function(){
       let rowCount=1;//width of row
       let triNum=1;//total number of triangles in the row including alternates
@@ -71,6 +76,31 @@ export class TranslateGridColor {
         this.pairedAdjacentIndexRows[i].firstRow=[...firstRow.splice(offset)];
         if(i<this.width-1){offset++;}
         else if (i>=this.width){ offset=offset-1;}
+      }
+    }
+
+    buildGridMap=function(){
+      //loop through this.pairedAdjacentIndexRows to map each traingle in grid to color map
+      for (let i=0; i<this.pairedAdjacentIndexRows.length; i++){
+          let row=[...this.pairedAdjacentIndexRows[i].firstRow];
+          let totalTri=this.gridWidth*2+1;
+          while(row.length<=totalTri){
+            row.push(...this.pairedAdjacentIndexRows[i].repeatRow);
+          }
+          row=row.slice(row,totalTri);
+          this.gridMap.push(row);
+      }
+
+
+    }
+
+    buildTranslationMap=function(){
+      let position=0;
+      for (let i=0; i<this.gridMap.length; i++){
+        for (let ii=0;ii<this.gridMap[i].length;ii++){
+          this.translationMap[ii]=(this.translationMap[ii])?[...this.translationMap[ii],position]:[position]
+          position++;
+        }
       }
     }
 
