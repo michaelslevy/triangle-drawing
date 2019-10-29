@@ -63,6 +63,11 @@ export const changeGridCoords=gridCoords=>({
   gridCoords
 })
 
+export const updateTranslationMap=translationMap=>({
+  type:"translationMap_update",
+  translationMap
+})
+
 export const updateDimensions=function(dimensions){
     return function(dispatch){
       dispatch(changeWidth(dimensions.width));
@@ -73,11 +78,13 @@ export const updateDimensions=function(dimensions){
       let sideLength=(maxWidth<=maxHeight)?maxWidth:maxHeight;
       dispatch(changeSideLength(sideLength));
       let translationMap=new TranslateGridColor(dimensions);
+      dispatch(updateTranslationMap(translationMap));
       dispatch(changeShapeCoords(defineDiamondCoordinates(dimensions.width, sideLength)));
     }
 }
 
 export const colorGridDiamond=function(colorMap, dimensions, gridCoords, defaultColor='555'){
+
   return function(dispatch){
     let gridColorMap=new CalculateTriangleGridColorPattern(colorMap, dimensions.width, 15, defaultColor).gridRows;
     let grid=[...gridCoords];

@@ -9,7 +9,8 @@ const initialState = {
   page:"ColorSelector",
   shapeCoords:[],
   sideLength:50,
-  gridCoords:[] 
+  gridCoords:[],
+  translationMap:[]
 }
 
 const settings = (state = initialState, action) => {
@@ -78,7 +79,11 @@ const settings = (state = initialState, action) => {
           gridCoords: action.gridCoords
     }
 
-
+    case "translationMap_update":
+      return {
+        ...state,
+        translationMap:action.translationMap
+    }
 
     default:
       return state

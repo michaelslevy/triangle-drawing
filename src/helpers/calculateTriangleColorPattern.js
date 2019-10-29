@@ -21,7 +21,6 @@ export class CalculateTriangleGridColorPattern {
 
     fillColorMap=function(){
       let length=this.findTotal(this.rowLengths);
-      console.log(length);
       for(let x=0; x<length; x++){
         this.colorMap[x]=(this.colorMap[x])?this.colorMap[x]:this.defaultColor;
       }

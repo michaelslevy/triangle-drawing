@@ -25,7 +25,8 @@ class Shape extends Component {
   componentDidMount(){
    this.props.updateDimensions({
      width:this.props.width,
-     height:this.props.height
+     height:this.props.height,
+     shape:this.props.shape
    });
   }
 
@@ -84,14 +85,14 @@ class Shape extends Component {
             <label>width
               <input type='number' id='widthInput'
               onChange={(e)=>this.updateWidthHandler(e)}
-              min='3' max='20'
+              min='2' max='20'
               value={this.props.width} />
               </label>
               {(this.props.shape==="rhombus")?
                 (<label>height
                 <input type='number' id='heightInput'
                 onChange={(e)=>this.updateHeightHandler(e)}
-                min='3' max='20'
+                min='2' max='20'
                 value={this.props.height} />
               </label>): ""
               }

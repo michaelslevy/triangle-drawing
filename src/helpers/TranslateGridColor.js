@@ -23,7 +23,7 @@ export class TranslateGridColor {
         this.buildGridMap();
         //map coresponding grid index to shape map position
         this.buildTranslationMap();
-        console.log(this.translationMap);
+        return this.translationMap;
     }
     getRowLengths=function(){
       let rowCount=1;//width of row
