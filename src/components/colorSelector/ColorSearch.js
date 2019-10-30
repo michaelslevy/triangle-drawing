@@ -2,19 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import SelectorBlock from "./SelectorBlock"
-import {changePalette} from "../../actions/settings.js"
+import {changePalette, updateOnlineStatus} from "../../actions/settings.js"
 
 //function passed to Reduxes Connect to populate store
 const mapStateToProps = (store) => {
   return {
-
+    online:store.settings.online
   }
 }
 
 //function passed to Reduxes Connect to dispatch to props
 const mapDispatchToProps = (dispatch) => {
   return {
-    changePalette: (colors) => dispatch(changePalette(colors))
+    changePalette: (colors) => dispatch(changePalette(colors)),
+    updateOnlineStatus: (online) => dispatch(updateOnlineStatus(online))
   }
 }
 
@@ -61,6 +62,8 @@ class ColorSearch extends Component {
         self.setState({loading:false});
       }).catch(function(err) {
         console.error('Fetch problem: ' + err.message);
+        self.props.updateOnlineStatus(false);
+        self.setState({loading:false});
       });
   }
 
@@ -93,17 +96,22 @@ class ColorSearch extends Component {
 
      return (
        <div id='colorSearch'>
+         {(this.props.online)?
           <form>
             <input placeholder='enter keywords' type='text'ref={this.inputRef} id='colorSearchInput' />
             <button id='colorSubmit' onClick={this.updateKeyword} >Explore</button>
-          </form>
+          </form>:" "
+        }
 
           <div id='colorList'>
 
             {(this.state.loading)?<p>loading...</p>:
-            this.state.palettes.filter(palette=>palette.colors.length>0).map((palette, index) =>(
-              <SelectorBlock key={index} title={palette.title} handler={this.clickHandler} colors={palette.colors} />
-            ))}
+              (this.props.online)?
+                this.state.palettes.filter(palette=>palette.colors.length>0).map((palette, index) =>(
+                  <SelectorBlock key={index} title={palette.title} handler={this.clickHandler} colors={palette.colors} />
+                )):
+                <p>You are offline</p>
+              }
 
           </div>
         </div>

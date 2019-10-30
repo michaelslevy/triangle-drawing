@@ -1,5 +1,6 @@
 const initialState = {
   loading: true,
+  online:true,
   palette: ["ffffff","ffffff","ffffff","ffffff","ffffff"],
   colorChart:[],
   selectedColor: "",
@@ -83,6 +84,12 @@ const settings = (state = initialState, action) => {
       return {
         ...state,
         translationMap:action.translationMap
+    }
+
+    case "online_update":
+      return {
+        ...state,
+        online:action.online
     }
 
     default:

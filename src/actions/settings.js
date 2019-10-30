@@ -68,6 +68,12 @@ export const updateTranslationMap=translationMap=>({
   translationMap
 })
 
+export const updateOnlineStatus=online=>({
+  type:"online_update",
+  online
+})
+
+
 export const updateDimensions=function(dimensions){
     return function(dispatch){
       dispatch(changeWidth(dimensions.width));
