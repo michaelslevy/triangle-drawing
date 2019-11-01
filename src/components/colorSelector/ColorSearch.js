@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import SelectorBlock from "./SelectorBlock"
 import {changePalette, updateOnlineStatus} from "../../actions/settings.js"
+import {defaultColorJSON} from "../../helpers/defaultColorJSON"
 
 //function passed to Reduxes Connect to populate store
 const mapStateToProps = (store) => {
@@ -64,6 +65,9 @@ class ColorSearch extends Component {
         console.error('Fetch problem: ' + err.message);
         self.props.updateOnlineStatus(false);
         self.setState({loading:false});
+
+        let p=self.parseColorJson(defaultColorJSON);
+        self.setState({palettes:p});
       });
   }
 
@@ -106,11 +110,9 @@ class ColorSearch extends Component {
           <div id='colorList'>
 
             {(this.state.loading)?<p>loading...</p>:
-              (this.props.online)?
                 this.state.palettes.filter(palette=>palette.colors.length>0).map((palette, index) =>(
                   <SelectorBlock key={index} title={palette.title} handler={this.clickHandler} colors={palette.colors} />
-                )):
-                <p>You are offline</p>
+                ))
               }
 
           </div>
