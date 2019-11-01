@@ -64,6 +64,7 @@ class ColorSearch extends Component {
         console.error('Fetch problem: ' + err.message);
         self.props.updateOnlineStatus(false);
         self.setState({loading:false});
+        
         let ColorJSON=require('../../helpers/defaultColorJSON.json');
         let p=self.parseColorJson(ColorJSON);
         self.setState({palettes:p});
