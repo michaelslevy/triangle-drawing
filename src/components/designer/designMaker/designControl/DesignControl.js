@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import Diamond from "../../../shapes/Diamond"
+import Rhombus from "../../../shapes/Rhombus"
 
 const mapStateToProps = (store) => {
   return {
     width:store.settings.width,
+    shape:store.settings.shape
   }
 }
 
@@ -20,7 +22,7 @@ class DesignControl extends Component {
 
      return (
        <div id='designControl'>
-          <Diamond />
+        {(this.props.shape==="rhombus")?<Rhombus />:<Diamond />}
        </div>
      );
   }
