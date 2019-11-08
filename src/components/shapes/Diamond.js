@@ -4,7 +4,7 @@ import Triangle from "./Triangle"
 import { connect } from 'react-redux'
 import { calculateTriangleAltittude } from "../../helpers/calculations"
 import "./index.css"
-import {colorGridDiamond,changeColorChart,updateDimensions} from "../../actions/settings"
+import {changeColorChart,updateDimensions} from "../../actions/settings"
 
 const mapStateToProps = (store) => {
   return {
@@ -14,7 +14,8 @@ const mapStateToProps = (store) => {
     selectedColor:store.settings.selectedColor,
     colorChart:store.settings.colorChart,
     gridCoords:store.settings.gridCoords,
-    palette:store.settings.palette
+    palette:store.settings.palette,
+    translationMap:store.settings.translationMap
   }
 }
 
@@ -22,7 +23,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     changeColorChart:(colorChart)=>dispatch(changeColorChart(colorChart)),
     updateDimensions:(dimensions)=>dispatch(updateDimensions(dimensions)),
-    colorGridDiamond:(colorChart, dimensions, gridCoords, defaultColor)=>dispatch(colorGridDiamond(colorChart, dimensions, gridCoords,defaultColor))
   }
 }
 
@@ -36,6 +36,7 @@ class Diamond extends Component {
   handler=function(e, index){
       e.preventDefault();
       e.stopPropagation();
+      let $this=this;
       let colorChart=this.props.colorChart;
       colorChart[index]=this.props.selectedColor;
       this.props.changeColorChart(colorChart);
@@ -45,8 +46,16 @@ class Diamond extends Component {
         height:0
       };
      this.props.updateDimensions(dimensions);
-     this.props.colorGridDiamond(colorChart, dimensions, this.props.gridCoords, this.props.palette[0]);
-
+     //console.log(this.props.translationMap[index], this.props.selectedColor);
+     for(let x=0;x<this.props.translationMap[index].length;x++){
+       let pos=this.props.translationMap[index][x];
+       let id="gridTri"+pos;
+       let tri=document.getElementById(id);
+       if(tri){
+         tri.setAttribute("fill", "#"+$this.props.selectedColor);
+         tri.setAttribute("stroke", "#"+$this.props.selectedColor);
+       }
+     }
   }
 
   getMicrotime=function(){

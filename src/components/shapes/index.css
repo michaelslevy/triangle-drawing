@@ -1,10 +1,10 @@
 .svgBuilder {
   width:600px;
-  height:600px;
+  height:580px;
   margin:auto;
 }
 #designePane {
-  height:100%;
+  height:calc(100% - 20px);
 }
 
 #designControl {

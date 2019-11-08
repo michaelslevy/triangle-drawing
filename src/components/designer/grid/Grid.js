@@ -52,7 +52,7 @@ class Grid extends Component {
        <div id='grid'>
         <svg width="100%">
         {this.props.gridCoords.map((coord) =>
-          <Triangle key={this.keyText(coord.key)} handler={this.handler} index={coord.key} id={this.keyText(coord.key)} side={coord.side} stroke={(coord.color)?"#"+coord.color:"#555"} strokeWidth={1} fill={(coord.color)?"#"+coord.color:"#555"} direction={coord.direction}  x={coord.x} y={coord.y} />
+          <Triangle key={this.keyText(coord.key)} handler={this.handler} index={coord.key} id={"gridTri"+coord.key} side={coord.side} stroke={(coord.color)?"#"+coord.color:"#555"} strokeWidth={1} fill={(coord.color)?"#"+coord.color:"#555"} direction={coord.direction}  x={coord.x} y={coord.y} />
         )}
         </svg>
       </div>

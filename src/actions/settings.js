@@ -88,21 +88,3 @@ export const updateDimensions=function(dimensions){
       dispatch(changeShapeCoords(defineDiamondCoordinates(dimensions.width, sideLength)));
     }
 }
-
-export const colorGridDiamond=function(colorMap, dimensions, gridCoords, defaultColor='555'){
-
-  return function(dispatch){
-    let gridColorMap=new CalculateTriangleGridColorPattern(colorMap, dimensions.width, 15, defaultColor).gridRows;
-    let grid=[...gridCoords];
-    let colorIndex=0;
-    if(grid){
-        for (let i=0; i<grid.length; i++){
-          grid[i].color=gridColorMap[colorIndex];
-          colorIndex=(colorIndex<(gridColorMap.length-1))?colorIndex+1:0;
-        }
-        dispatch(changeGridCoords(grid));
-      } else {
-        console.error("Grid Coordinates not found.");
-    }
-  }
-}
