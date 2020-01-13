@@ -1,8 +1,28 @@
-export const calculateTriangleAltittude=function(side){
+export const calculateTriangleAltitude=function(side){
   let bSquared=Math.pow((side/2),2);
   let cSquared=Math.pow(side,2);
   let a=Math.sqrt(cSquared-bSquared);
   return a;
+}
+
+export const getSideLength=function(dimensions){
+
+  let maxWidth=0;
+  let maxHeight=0;
+
+  let panelHeight=Number(document.getElementById('designControl').offsetHeight);
+  let panelWidth=Number(document.getElementById('designControl').clientWidth)*.9;
+
+  if(dimensions.shape==="rhombus"){
+    let triNumAcross=dimensions.width+(dimensions.height/2);
+    maxWidth=(panelWidth)/triNumAcross;
+    maxHeight=panelHeight/dimensions.height;
+  } else {
+    maxWidth=(panelWidth*.9)/dimensions.width;
+    maxHeight=(panelHeight)/(dimensions.width*2);
+  }
+
+  return (maxWidth<=maxHeight)?maxWidth:maxHeight;
 }
 
 //calculate triangle positions
@@ -11,7 +31,7 @@ export const calculateTriangleAltittude=function(side){
 //first trinagle is center minus half distance
 //start points of proceeding rows add a 50% X distance and 100% Y distance
 export const defineDiamondCoordinates=function(width,sideLength=50){
-  let rowHeight=calculateTriangleAltittude(sideLength);
+  let rowHeight=calculateTriangleAltitude(sideLength);
   let xIncrement=sideLength/2;
   let diamondPhysicalWidth=width*sideLength;
   let startX=diamondPhysicalWidth/2;
@@ -77,13 +97,29 @@ export const defineDiamondCoordinates=function(width,sideLength=50){
 
 }
 
+export const calculateNumberOfGridRows=function(sideLength){
+  let height=window.innerHeight;
+  let rowHeight=Number(calculateTriangleAltitude(sideLength).toFixed(2));
+  let numRows=Number((Math.floor(height/rowHeight)+1).toFixed(2));
+  return numRows;
+}
+
+export const getGridRowsNum=function(gridLength=15){
+  let gridWidth=document.getElementById("grid").clientWidth;
+  let sideLength=Number((gridWidth/gridLength).toFixed(1));
+  gridLength++;//add an extra for overflow
+  let rowHeight=Number(calculateTriangleAltitude(sideLength).toFixed(2));
+  let numRows=calculateNumberOfGridRows(sideLength);
+
+  return numRows;
+}
+
 export const calculateGrid=function(gridLength=15, color='555555'){
   let gridWidth=document.getElementById("grid").clientWidth;
   let sideLength=Number((gridWidth/gridLength).toFixed(1));
   gridLength++;//add an extra for overflow
-  let height=window.innerHeight;
-  let rowHeight=Number(calculateTriangleAltittude(sideLength).toFixed(2));
-  let numRows=Number((Math.floor(height/rowHeight)+1).toFixed(2));
+  let rowHeight=Number(calculateTriangleAltitude(sideLength).toFixed(2));
+  let numRows=calculateNumberOfGridRows(sideLength);
   let xIncrement=sideLength/2;
 
   let key=0;

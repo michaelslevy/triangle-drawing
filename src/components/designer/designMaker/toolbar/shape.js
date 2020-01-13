@@ -34,7 +34,12 @@ class Shape extends Component {
     e.preventDefault();
     e.stopPropagation();
 
-    this.props.changeShape(shape);
+    let dimensions={
+      width:this.props.width,
+      height:this.props.height,
+      shape
+    };
+    this.props.updateDimensions(dimensions);
   }
 
   updateWidthHandler=function(e){

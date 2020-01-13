@@ -1,9 +1,11 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
-import {defineDiamondCoordinates} from "../helpers/calculations"
+import {defineDiamondCoordinates,getSideLength} from "../helpers/calculations"
+import {defineRhombusCoordinates} from "../helpers/defineRhombusCoordinates"
 import {CalculateTriangleGridColorPattern} from "../helpers/calculateTriangleColorPattern"
 import {TranslateGridColor} from "../helpers/TranslateGridColor";
+import {TranslateGridColorRhombus} from "../helpers/TranslateGridColorRhombus";
 
 // Note: this API requires redux@>=3.1.0
 const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -78,13 +80,13 @@ export const updateDimensions=function(dimensions){
     return function(dispatch){
       dispatch(changeWidth(dimensions.width));
       dispatch(changeHeight(dimensions.height));
+      dispatch(changeShape(dimensions.shape));
 
-      let maxWidth=(Number(document.getElementById('designControl').clientWidth)*.9)/dimensions.width;
-      let maxHeight=(Number(document.getElementById('designControl').offsetHeight))/(dimensions.width*2);
-      let sideLength=(maxWidth<=maxHeight)?maxWidth:maxHeight;
+      let sideLength=getSideLength(dimensions);
       dispatch(changeSideLength(sideLength));
-      let translationMap=new TranslateGridColor(dimensions);
+
+      let translationMap=(dimensions.shape==="rhombus")? new TranslateGridColorRhombus(dimensions):new TranslateGridColor(dimensions);
       dispatch(updateTranslationMap(translationMap));
-      dispatch(changeShapeCoords(defineDiamondCoordinates(dimensions.width, sideLength)));
+      dispatch(changeShapeCoords((dimensions.shape==="rhombus")? defineRhombusCoordinates(dimensions.width, dimensions.height, sideLength) : defineDiamondCoordinates(dimensions.width, sideLength)));
     }
 }

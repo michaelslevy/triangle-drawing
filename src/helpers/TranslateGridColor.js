@@ -2,7 +2,7 @@
 ////Loop through grid
 ////Create a translation list that maps colorTemplate position to grid indexes
 
-import {calculateTriangleAltittude} from "./calculations.js"
+import {calculateTriangleAltitude} from "./calculations.js"
 
 //!!Gets executed when diamond dimensions change and when toolbar component loads
 export class TranslateGridColor {
@@ -101,7 +101,7 @@ export class TranslateGridColor {
       let sideLength=Number((gridWidth/this.gridWidth).toFixed(1));
       let gridLength=this.gridWidth+1;//add an extra for overflow
       let height=window.innerHeight;
-      let rowHeight=Number(calculateTriangleAltittude(sideLength).toFixed(2));
+      let rowHeight=Number(calculateTriangleAltitude(sideLength).toFixed(2));
       let numRows=Number((Math.floor(height/rowHeight)+1).toFixed(2));
       return numRows*(gridLength)*2;
     }

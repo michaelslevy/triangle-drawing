@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Triangle from "./Triangle"
 import { connect } from 'react-redux'
-import { calculateTriangleAltittude } from "../../helpers/calculations"
+import { calculateTriangleAltitude } from "../../helpers/calculations"
 import "./index.css"
 import {changeColorChart,updateDimensions} from "../../actions/settings"
 
@@ -10,6 +10,7 @@ const mapStateToProps = (store) => {
   return {
     width:store.settings.width,
     height:store.settings.height,
+    shape:store.settings.shape,
     sideLength:store.settings.sideLength,
     shapeCoords:store.settings.shapeCoords,
     selectedColor:store.settings.selectedColor,
@@ -39,15 +40,19 @@ class Rhombus extends Component {
       e.stopPropagation();
       let $this=this;
       let colorChart=this.props.colorChart;
+      console.log(index);
       colorChart[index]=this.props.selectedColor;
       this.props.changeColorChart(colorChart);
 
       let dimensions={
         width:this.props.width,
-        height:0
+        height:this.props.height,
+        shape:this.props.shape,
       };
+
      this.props.updateDimensions(dimensions);
      //console.log(this.props.translationMap[index], this.props.selectedColor);
+     if(typeof this.props.translationMap[index]=="undefined"){return false;}
      for(let x=0;x<this.props.translationMap[index].length;x++){
        let pos=this.props.translationMap[index][x];
        let id="gridTri"+pos;
@@ -59,23 +64,23 @@ class Rhombus extends Component {
      }
   }
 
+
+
   getMicrotime=function(){
     let d = new Date();
     return d.getMilliseconds();
   }
 
-  keyText=(id)=>"tri"+id+"-"+this.getMicrotime();
+  keyText=(id)=>"rho"+id+"-"+this.getMicrotime();
 
    render() {
+     let svgWidth=this.props.sideLength*this.props.width+(this.props.height/2*this.props.sideLength);
      return (
-       <div>
-        <h1>Rhombus</h1>
-          <svg id='diamond' className='svgBuilder' style={{width:(this.props.sideLength*this.props.width)}}>
+          <svg id='rhombus' className='svgBuilder' style={{width:svgWidth}}>
           {this.props.shapeCoords.map((coord) =>
             <Triangle key={this.keyText(coord.key)} handler={this.handler} index={coord.key} side={this.props.sideLength} stroke='#888' strokeWidth={1} fill={(this.props.colorChart[coord.key])?"#"+this.props.colorChart[coord.key]:"#"+this.props.palette[0]} direction={coord.direction}  x={coord.x} y={coord.y} />
           )}
           </svg>
-        </div>
      );
   }
 }

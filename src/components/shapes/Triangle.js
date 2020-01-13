@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { calculateTriangleAltittude } from "../../helpers/calculations"
+import { calculateTriangleAltitude } from "../../helpers/calculations"
 
 class Triangle extends Component {
 
@@ -30,7 +30,7 @@ class Triangle extends Component {
   }
 
   calculateCoordinates = function (){
-    let altitude = calculateTriangleAltittude(this.props.side);
+    let altitude = calculateTriangleAltitude(this.props.side);
 
     if(this.props.direction==="up"){
       let p1=[(0+this.props.x),(altitude+this.props.y)]
