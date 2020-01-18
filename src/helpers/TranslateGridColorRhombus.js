@@ -47,7 +47,6 @@ export class TranslateGridColorRhombus {
       let gridTriId=0;
       //loop through rows
       for(let i=0; i<numberOfGridRows; i++){
-        console.log("row:"+i,numberOfGridRows);
         let workingMasterRow=this.master[currentMapRow];
         baseColumn=(column<workingMasterRow.length)?baseColumn+1:0;
         column=baseColumn;

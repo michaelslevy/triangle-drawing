@@ -1,6 +1,7 @@
 {
   "name": "triangle-drawing",
   "version": "0.1.0",
+  "homepage": "./",
   "private": true,
   "devDependencies": {
     "react-scripts": "^3.3.0"

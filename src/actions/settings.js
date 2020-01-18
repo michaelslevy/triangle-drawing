@@ -75,6 +75,19 @@ export const updateOnlineStatus=online=>({
   online
 })
 
+export const resetColors=function(color){
+    color="#"+color;
+    return function(dispatch){
+      dispatch(changeColorChart([]));
+      let gridTri=document.querySelectorAll("#grid polygon");
+      for(let x=0; x<gridTri.length; x++){
+        if(gridTri[x]){
+            gridTri[x].setAttribute("fill",color);
+            gridTri[x].setAttribute("stroke",color);
+        }
+      }
+    }
+}
 
 export const updateDimensions=function(dimensions){
     return function(dispatch){

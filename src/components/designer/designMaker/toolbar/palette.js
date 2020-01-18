@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
-import {changeSelectedColor} from "../../../../actions/settings"
+import {changeSelectedColor, resetColors} from "../../../../actions/settings"
 
 
 const mapStateToProps = (store) => {
@@ -13,6 +13,7 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     changeSelectedColor:(color)=>dispatch(changeSelectedColor(color)),
+    resetColors:(color)=>dispatch(resetColors(color))
   }
 }
 
@@ -32,6 +33,13 @@ class Palette extends Component {
   selectColor=function(i, color){
     this.setState({selectedColorSquare:i});
     this.props.changeSelectedColor(color);
+  }
+
+  resetHandler=function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    let color=this.props.palette[0];
+    this.props.resetColors(color);
   }
 
    render() {
@@ -62,7 +70,9 @@ class Palette extends Component {
             className={(this.state.selectedColorSquare===4)?"colorBlock active":'colorBlock'}
             onClick={(e)=>this.selectColor(4,this.props.palette[4])}
             ></div>
-            <button id='modifyPalette'>Modify<br/>Palette</button>
+            <button onClick={(e)=>this.resetHandler(e)} className='textButton' id='resetPalette'>Reset<br/>Colors</button>
+            <button className='textButton' id='modifyPalette'>Modify<br/>Palette</button>
+
           </div>
        </div>
      );

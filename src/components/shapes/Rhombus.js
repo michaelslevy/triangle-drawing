@@ -40,7 +40,6 @@ class Rhombus extends Component {
       e.stopPropagation();
       let $this=this;
       let colorChart=this.props.colorChart;
-      console.log(index);
       colorChart[index]=this.props.selectedColor;
       this.props.changeColorChart(colorChart);
 
