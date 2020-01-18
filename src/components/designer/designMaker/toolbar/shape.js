@@ -34,9 +34,11 @@ class Shape extends Component {
     e.preventDefault();
     e.stopPropagation();
 
+    let w=(this.props.width)?this.props.width:3;
+    let h=(this.props.height)?this.props.height:3;
     let dimensions={
-      width:this.props.width,
-      height:this.props.height,
+      width:w,
+      height:h,
       shape
     };
     this.props.updateDimensions(dimensions);
