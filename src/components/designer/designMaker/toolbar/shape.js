@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import diamond from '../../../../diamond.svg'
 import rhombus from '../../../../rhombus.svg'
 import { connect } from 'react-redux'
-import {changeShape, updateDimensions} from "../../../../actions/settings"
+import {changeShape, updateDimensions, resetColors} from "../../../../actions/settings"
 
 const mapStateToProps = (store) => {
   return {
     shape:store.settings.shape,
     width:store.settings.width,
-    height:store.settings.height
+    height:store.settings.height,
+    palette:store.settings.palette
   }
 }
 
@@ -17,6 +18,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     changeShape:(shape)=>dispatch(changeShape(shape)),
     updateDimensions:(dimensions)=>dispatch(updateDimensions(dimensions)),
+    resetColors:(color)=>dispatch(resetColors(color))
   }
 }
 
@@ -42,6 +44,10 @@ class Shape extends Component {
       shape
     };
     this.props.updateDimensions(dimensions);
+
+    let color=this.props.palette[0];
+    this.props.resetColors(color);
+
   }
 
   updateWidthHandler=function(e){
@@ -55,6 +61,9 @@ class Shape extends Component {
       shape: this.props.shape
     };
    this.props.updateDimensions(dimensions);
+
+   let color=this.props.palette[0];
+   this.props.resetColors(color);
   }
 
   updateHeightHandler=function(e){
@@ -68,6 +77,9 @@ class Shape extends Component {
       shape: this.props.shape
     };
     this.props.updateDimensions(dimensions);
+
+    let color=this.props.palette[0];
+    this.props.resetColors(color);
   }
 
    render() {
