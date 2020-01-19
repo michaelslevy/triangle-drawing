@@ -13,7 +13,6 @@ export class TranslateGridColorRhombus {
         this.assigned=[];
         this.buildMaster();
         this.buildTranslationMap();
-        console.log(this.assigned);
         return this.assigned;
     }
 
@@ -47,21 +46,22 @@ export class TranslateGridColorRhombus {
       let gridTriId=0;
       //loop through rows
       for(let i=0; i<numberOfGridRows; i++){
+
         let workingMasterRow=this.master[currentMapRow];
         if (!workingMasterRow){return false;}
-        
-        baseColumn=(column<workingMasterRow.length)?baseColumn+1:0;
+
+        baseColumn=(baseColumn<workingMasterRow.length-1)?baseColumn+1:0;
+
         column=baseColumn;
         for(let ii=-1;ii<gridWidth;ii++){
+          let rhombusId=(workingMasterRow[column])?workingMasterRow[column]:0;
 
-          let rhombusId=(workingMasterRow)?workingMasterRow[column]:0;
           if(typeof this.assigned[rhombusId]!=="undefined"){
             this.assigned[rhombusId].push(gridTriId);
 
-            column=(column<workingMasterRow.length-1)? column+1:0;
+            column=(column<(workingMasterRow.length-1))? column+1:0;
             gridTriId++;
           }
-
         }
         currentMapRow=(currentMapRow<(this.master.length)-1)?currentMapRow+1:0;
       }
