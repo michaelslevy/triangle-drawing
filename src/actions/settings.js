@@ -75,6 +75,11 @@ export const updateOnlineStatus=online=>({
   online
 })
 
+export const updateSlideOutSelectorOpen=slideOutSelectorOpen=>({
+  type:"slideOutSelectorOpen",
+  slideOutSelectorOpen
+})
+
 export const resetColors=function(color){
     color="#"+color;
     return function(dispatch){

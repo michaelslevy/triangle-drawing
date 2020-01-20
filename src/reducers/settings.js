@@ -11,7 +11,8 @@ const initialState = {
   shapeCoords:[],
   sideLength:50,
   gridCoords:[],
-  translationMap:[]
+  translationMap:[],
+  slideOutSelectorOpen:false
 }
 
 const settings = (state = initialState, action) => {
@@ -90,6 +91,13 @@ const settings = (state = initialState, action) => {
       return {
         ...state,
         online:action.online
+    }
+
+    case "slideOutSelectorOpen":
+    console.log(action);
+      return {
+        ...state,
+        slideOutSelectorOpen:action.slideOutSelectorOpen
     }
 
     default:

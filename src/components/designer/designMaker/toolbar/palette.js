@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
-import {changeSelectedColor, resetColors} from "../../../../actions/settings"
-
+import {changeSelectedColor, resetColors, updateSlideOutSelectorOpen} from "../../../../actions/settings"
 
 const mapStateToProps = (store) => {
   return {
-    palette:store.settings.palette
+    palette:store.settings.palette,
+    SlideOutSelectorOpen:store.settings.SlideOutSelectorOpen
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     changeSelectedColor:(color)=>dispatch(changeSelectedColor(color)),
-    resetColors:(color)=>dispatch(resetColors(color))
+    resetColors:(color)=>dispatch(resetColors(color)),
+    updateSlideOutSelectorOpen:(status)=>dispatch(updateSlideOutSelectorOpen(status))
   }
 }
 
@@ -40,6 +41,13 @@ class Palette extends Component {
     e.stopPropagation();
     let color=this.props.palette[0];
     this.props.resetColors(color);
+  }
+
+  slideOutHandler=function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    let status=(this.props.SlideOutSelectorOpen)?false:true;
+    this.props.updateSlideOutSelectorOpen(status);
   }
 
    render() {
@@ -71,7 +79,7 @@ class Palette extends Component {
             onClick={(e)=>this.selectColor(4,this.props.palette[4])}
             ></div>
             <button onClick={(e)=>this.resetHandler(e)} className='textButton' id='resetPalette'>Reset<br/>Colors</button>
-            <button className='textButton' id='modifyPalette'>Modify<br/>Palette</button>
+            <button onClick={(e)=>this.slideOutHandler(e)} className='textButton' id='modifyPalette'>Modify<br/>Palette</button>
 
           </div>
        </div>
