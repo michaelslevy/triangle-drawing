@@ -37,9 +37,9 @@ class SlideOutSelector extends Component {
      return (
         <div ref={ref => this.el = ref}>
             <SlidingPane
-                closeIcon={<div>Some div containing custom close icon.</div>}
+                closeIcon={<div>Close</div>}
                 isOpen={ this.props.slideOutSelectorOpen }
-                title='Hey, it is optional pane title.  I can be React component too.'
+                title='Palette Selector'
                 from='left'
                 width='50%'
                 onRequestClose={ (e) => this.slideOutHandler(e) }>
