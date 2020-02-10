@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+
 import PropTypes from 'prop-types';
 import { calculateTriangleAltitude } from "../../helpers/calculations"
+
+const mapStateToProps = (store) => {
+  return {
+    palette:store.settings.palette
+  }
+}
 
 class Triangle extends Component {
 
@@ -50,10 +58,10 @@ class Triangle extends Component {
       ${this.state.p2[0]} ${this.state.p2[1]},
       ${this.state.p3[0]} ${this.state.p3[1]},
       ${this.state.p1[0]} ${this.state.p1[1]}`}
-      fill={this.props.fill} stroke={this.props.stroke} strokeWidth={this.props.strokeWidth}
+      fill={"#"+this.props.palette[this.props.fill]} stroke={"#"+this.props.palette[this.props.stroke]} strokeWidth={this.props.strokeWidth}
       className='triangle' id={this.props.id} onClick={(e)=>this.props.handler(e, this.props.index)} />
     );
   }
 }
 
-export default Triangle;
+export default connect(mapStateToProps)(Triangle);

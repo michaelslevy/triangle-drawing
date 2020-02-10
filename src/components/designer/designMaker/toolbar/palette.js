@@ -28,19 +28,19 @@ class Palette extends Component {
   }
 
   componentDidMount(){
-    this.props.changeSelectedColor(this.props.palette[0])
+    this.props.changeSelectedColor(0)
   }
 
   selectColor=function(i, color){
     this.setState({selectedColorSquare:i});
-    this.props.changeSelectedColor(color);
+    this.props.changeSelectedColor(i);
   }
 
   resetHandler=function(e){
     e.preventDefault();
     e.stopPropagation();
     let color=this.props.palette[0];
-    this.props.resetColors(color);
+    this.props.resetColors(0);
   }
 
   slideOutHandler=function(e){

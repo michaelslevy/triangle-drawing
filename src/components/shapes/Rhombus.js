@@ -33,6 +33,9 @@ class Rhombus extends Component {
   constructor(props) {
     super(props);
     this.handler = this.handler.bind(this);
+    this.state={
+      localMap:[]
+    };
   }
 
   handler=function(e, index){
@@ -40,7 +43,8 @@ class Rhombus extends Component {
       e.stopPropagation();
       let $this=this;
       let colorChart=this.props.colorChart;
-      colorChart[index]=this.props.selectedColor;
+      let i=this.props.selectedColor;
+      colorChart[index]=this.props.palette[i];
       this.props.changeColorChart(colorChart);
 
       let dimensions={
@@ -50,20 +54,18 @@ class Rhombus extends Component {
       };
 
      this.props.updateDimensions(dimensions);
-     //console.log(this.props.translationMap[index], this.props.selectedColor);
      if(typeof this.props.translationMap[index]=="undefined"){return false;}
      for(let x=0;x<this.props.translationMap[index].length;x++){
        let pos=this.props.translationMap[index][x];
        let id="gridTri"+pos;
        let tri=document.getElementById(id);
        if(tri){
-         tri.setAttribute("fill", "#"+$this.props.selectedColor);
-         tri.setAttribute("stroke", "#"+$this.props.selectedColor);
+         let localMap=this.state.localMap;
+         localMap[index]=i;
+         this.setState({localMap})
        }
      }
   }
-
-
 
   getMicrotime=function(){
     let d = new Date();
@@ -77,7 +79,7 @@ class Rhombus extends Component {
      return (
           <svg id='rhombus' className='svgBuilder' style={{width:svgWidth}}>
           {this.props.shapeCoords.map((coord) =>
-            <Triangle key={this.keyText(coord.key)} handler={this.handler} index={coord.key} side={this.props.sideLength} stroke='#888' strokeWidth={1} fill={(this.props.colorChart[coord.key])?"#"+this.props.colorChart[coord.key]:"#"+this.props.palette[0]} direction={coord.direction}  x={coord.x} y={coord.y} />
+            <Triangle key={this.keyText(coord.key)} handler={this.handler} index={coord.key} side={this.props.sideLength} stroke={"#888"} strokeWidth={1} fill={(this.state.localMap[coord.key])?this.state.localMap[coord.key]:0} direction={coord.direction}  x={coord.x} y={coord.y} />
           )}
           </svg>
      );
