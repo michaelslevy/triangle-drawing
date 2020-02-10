@@ -6,6 +6,7 @@ import Modal from 'react-modal';
 import SlidingPane from 'react-sliding-pane';
 import 'react-sliding-pane/dist/react-sliding-pane.css';
 import {updateSlideOutSelectorOpen} from "../../actions/settings"
+import ColorSelector from "./ColorSelector"
 
 
 const mapStateToProps = (store) => {
@@ -43,7 +44,7 @@ class SlideOutSelector extends Component {
                 from='left'
                 width='50%'
                 onRequestClose={ (e) => this.slideOutHandler(e) }>
-                <div>And I am pane content on left.</div>
+                <ColorSelector hideNextButton={1} />
             </SlidingPane>
         </div>
      );

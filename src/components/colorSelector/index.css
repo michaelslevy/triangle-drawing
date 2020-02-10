@@ -99,3 +99,7 @@
   background: #28B5D1;
   color:white;
 }
+
+html .slide-pane__overlay.ReactModal__Overlay--after-open {
+    background: none;
+}
