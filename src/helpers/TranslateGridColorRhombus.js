@@ -9,7 +9,7 @@ export class TranslateGridColorRhombus {
     constructor(dimensions, gridWidth=15) {
 
         this.dimensions=dimensions;
-        this.master=[];
+        this.master=[];//rows of position relative to base Rhombus
         this.assigned=[];
         this.buildMaster();
         this.buildTranslationMap();

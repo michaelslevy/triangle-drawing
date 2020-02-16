@@ -6,7 +6,7 @@ import { calculateTriangleAltitude } from "../../helpers/calculations"
 
 const mapStateToProps = (store) => {
   return {
-    palette:store.settings.palette
+    palette:store.settings.palette,
   }
 }
 

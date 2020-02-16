@@ -4,7 +4,7 @@ import Triangle from "./Triangle"
 import { connect } from 'react-redux'
 import { calculateTriangleAltitude } from "../../helpers/calculations"
 import "./index.css"
-import {changeColorChart,updateDimensions} from "../../actions/settings"
+import {updateGridPaletteIndexMap,changeColorChart,updateDimensions} from "../../actions/settings"
 
 const mapStateToProps = (store) => {
   return {
@@ -17,7 +17,8 @@ const mapStateToProps = (store) => {
     colorChart:store.settings.colorChart,
     gridCoords:store.settings.gridCoords,
     palette:store.settings.palette,
-    translationMap:store.settings.translationMap
+    translationMap:store.settings.translationMap,
+    gridPaletteIndexMap:store.settings.gridPaletteIndexMap
   }
 }
 
@@ -25,6 +26,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     changeColorChart:(colorChart)=>dispatch(changeColorChart(colorChart)),
     updateDimensions:(dimensions)=>dispatch(updateDimensions(dimensions)),
+    updateGridPaletteIndexMap:(gridPaletteIndexMap)=>dispatch(updateGridPaletteIndexMap(gridPaletteIndexMap))
   }
 }
 
@@ -41,7 +43,6 @@ class Rhombus extends Component {
   handler=function(e, index){
       e.preventDefault();
       e.stopPropagation();
-      let $this=this;
       let colorChart=this.props.colorChart;
       let i=this.props.selectedColor;
       colorChart[index]=this.props.palette[i];
@@ -55,8 +56,14 @@ class Rhombus extends Component {
 
      this.props.updateDimensions(dimensions);
      if(typeof this.props.translationMap[index]=="undefined"){return false;}
+
+     let gridPaletteIndexMap=this.props.gridPaletteIndexMap;
      for(let x=0;x<this.props.translationMap[index].length;x++){
+
+       // i=index of selectedColor
        let pos=this.props.translationMap[index][x];
+       gridPaletteIndexMap[pos]=i;
+
        let id="gridTri"+pos;
        let tri=document.getElementById(id);
        if(tri){
@@ -64,6 +71,9 @@ class Rhombus extends Component {
          localMap[index]=i;
          this.setState({localMap})
        }
+       
+       this.props.updateGridPaletteIndexMap(gridPaletteIndexMap);
+
      }
   }
 

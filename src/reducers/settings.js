@@ -12,6 +12,7 @@ const initialState = {
   sideLength:50,
   gridCoords:[],
   translationMap:[],
+  gridPaletteIndexMap:[],
   slideOutSelectorOpen:false
 }
 
@@ -85,6 +86,12 @@ const settings = (state = initialState, action) => {
       return {
         ...state,
         translationMap:action.translationMap
+    }
+
+    case "gridPaletteIndexMap_update":
+    return {
+      ...state,
+      gridPaletteIndexMap:action.gridPaletteIndexMap
     }
 
     case "online_update":

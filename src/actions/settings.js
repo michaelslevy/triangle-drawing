@@ -80,17 +80,16 @@ export const updateSlideOutSelectorOpen=slideOutSelectorOpen=>({
   slideOutSelectorOpen
 })
 
+export const updateGridPaletteIndexMap=gridPaletteIndexMap=>({
+  type:"gridPaletteIndexMap_update",
+  gridPaletteIndexMap
+})
+
 export const resetColors=function(color){
     color="#"+color;
     return function(dispatch){
       dispatch(changeColorChart([]));
-      let gridTri=document.querySelectorAll("#grid polygon");
-      for(let x=0; x<gridTri.length; x++){
-        if(gridTri[x]){
-            gridTri[x].setAttribute("fill",color);
-            gridTri[x].setAttribute("stroke",color);
-        }
-      }
+      dispatch(updateGridPaletteIndexMap([]));
     }
 }
 
