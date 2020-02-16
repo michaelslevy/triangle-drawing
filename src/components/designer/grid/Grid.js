@@ -49,7 +49,6 @@ class Grid extends Component {
   }
 
   render() {
-    console.log(this.props.gridPaletteIndexMap);
 
      return (
        <div id='grid'>

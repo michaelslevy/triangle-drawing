@@ -71,10 +71,10 @@ class Rhombus extends Component {
          localMap[index]=i;
          this.setState({localMap})
        }
-       
-       this.props.updateGridPaletteIndexMap(gridPaletteIndexMap);
 
      }
+     this.props.updateGridPaletteIndexMap(gridPaletteIndexMap);
+
   }
 
   getMicrotime=function(){
